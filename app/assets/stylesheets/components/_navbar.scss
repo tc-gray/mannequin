@@ -2,6 +2,16 @@
   text-transform: uppercase;
 }
 
+.nav-link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+.nav-link:hover {
+  text-decoration: underline !important;
+  color: grey !important;
+}
+
 .search-bar {
   position: absolute;
   right: 20px;
@@ -38,14 +48,19 @@
 
 // media queries
 
-@media (max-width: 992.98px) {
+@media (max-width: 1192.98px) {
   .mobile-nav-section {
     display: block;
 }
+
+.search-bar {
+  right: 10px;
+  top: 9px;
+}
 }
 
 
-@media (max-width: 992.98px) {
+@media (max-width: 1192.98px) {
   .desktop-nav-section {
     display: none;
 }
