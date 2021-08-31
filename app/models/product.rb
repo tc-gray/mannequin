@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many :product_reviews
   has_many :bookings, dependent: :destroy
   validates :name, presence: true
-  validates :description, presence: true, length: { in: 10..150 }
+  validates :description, presence: true
   validates :category, presence: true
   validates :size, presence: true
 end
