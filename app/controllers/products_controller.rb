@@ -3,9 +3,12 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def new
+    @product = Product.new
+    # we need to authorize anyone to make a product (if they have an account)
   end
 
   def create
