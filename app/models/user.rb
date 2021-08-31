@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :user_reviews
   has_many :products
   validates :username, presence: true, uniqueness: true
-  validates :encrypted_password, length: { in: 6..20 }
+  validates :password, length: { within: 6..20 }
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
