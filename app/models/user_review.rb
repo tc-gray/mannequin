@@ -6,4 +6,6 @@ class UserReview < ApplicationRecord
   # can use .recipient to get and set
   # regarding user reviews, the review belongs to the user who made the review
   belongs_to :recipient, class_name: 'User'
+  validates :content, presence: true, length: { in: 10..150 }
+  validates :rating, presence: true
 end
