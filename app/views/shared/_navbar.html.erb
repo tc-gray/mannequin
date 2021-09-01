@@ -1,34 +1,36 @@
 <%# desktop nav ***************************** %>
 
-<ul class="desktop-nav-section nav justify-content-center">
-  <li class="nav-item">
-    <%= link_to 'Rent Clothing', products_path, class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Community</a>
-    <%# <%= link_to 'Community', ##, class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">About Us</a>
-    <%# <%= link_to 'About Us', ##, class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <%# <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Sign in/Register</a> %>
-    <% if user_signed_in? %>
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-    <% else %>
-      <%= link_to 'Sign in/Register', new_user_session_path, class: 'nav-link' %>
-    <% end %>
-  </li>
-  <li>
-    <div class="input-group rounded search-bar">
-      <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-      <span class="input-group-text border-0" id="search-addon">
-      <i class="fas fa-search"></i>
-      </span>
-    </div>
-  </li>
-</ul>
+<nav class="p-2 desktop-nav-section">
+  <ul class=" nav justify-content-center">
+    <li class="nav-item">
+      <%= link_to 'Rent Clothing', products_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Community</a>
+      <%# <%= link_to 'Community', ##, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">About Us</a>
+      <%# <%= link_to 'About Us', ##, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%# <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Sign in/Register</a> %>
+      <% if user_signed_in? %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      <% else %>
+        <%= link_to 'Sign in/Register', new_user_session_path, class: 'nav-link' %>
+      <% end %>
+    </li>
+    <li>
+      <div class="input-group rounded search-bar">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <span class="input-group-text border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+        </span>
+      </div>
+    </li>
+  </ul>
+</nav>
 
 <%# mobile nav ***************************** %>
 
