@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   def index
+    @products = Product.all
   end
 
   def show
@@ -21,5 +22,11 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :description, :category, :size, photos: [])
   end
 end
