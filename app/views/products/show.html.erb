@@ -104,7 +104,7 @@
     <h2>See this product's reviews</h2>
       <% if @product.product_reviews.empty? %>
         <small><em>Be the first one to review this product!</em></small>
-      <% end %>
+      <% else %>
       <% @product.product_reviews[1..5].each do |review| %>
         <div>
           <% review.rating.times do %>
@@ -113,6 +113,7 @@
           <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
           <p class="mb-0"><%= review.content %></p>
         </div>
+        <% end %>
         <% end %>
     </div>
   </div>
