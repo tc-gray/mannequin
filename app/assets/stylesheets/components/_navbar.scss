@@ -1,5 +1,32 @@
+.nav-item {
+  text-transform: uppercase;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+.nav-link:hover {
+  text-decoration: underline !important;
+  color: grey !important;
+}
+
+.search-bar {
+  position: absolute;
+  right: 20px;
+  width: 300px;
+}
+
+.mobile-nav-section {
+  display: none;
+  background-color: #F4F4F4 !important;
+}
+
+// old navbar below
+
 .navbar-lewagon {
-  justify-content: space-between;
+  // justify-content: space-between;
   background: white;
 }
 
@@ -9,4 +36,33 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-center .navbar-inner {
+  text-align: center;
+}
+
+.navbar-center .navbar-inner .nav {
+  display:inline-block;
+  float: none;
+}
+
+// media queries
+
+@media (max-width: 1210.98px) {
+  .mobile-nav-section {
+    display: block;
+}
+
+.search-bar {
+  right: 10px;
+  top: 9px;
+}
+}
+
+
+@media (max-width: 1210.98px) {
+  .desktop-nav-section {
+    display: none;
+}
 }
