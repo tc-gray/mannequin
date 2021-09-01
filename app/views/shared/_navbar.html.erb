@@ -2,16 +2,23 @@
 
 <ul class="desktop-nav-section nav justify-content-center">
   <li class="nav-item">
-    <a class="nav-link" href="#">Rent Clothing</a>
+    <%= link_to 'Rent Clothing', products_path, class: 'nav-link' %>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Community</a>
+    <%# <%= link_to 'Community', ##, class: 'nav-link' %>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">About Us</a>
+    <%# <%= link_to 'About Us', ##, class: 'nav-link' %>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Sign in/Register</a>
+    <%# <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Sign in/Register</a> %>
+    <% if user_signed_in? %>
+      <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+    <% else %>
+      <%= link_to 'Sign in/Register', new_user_session_path, class: 'nav-link' %>
+    <% end %>
   </li>
   <li>
     <div class="input-group rounded search-bar">
@@ -32,7 +39,7 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="#">Rent Clothing<span class="sr-only">(current)</span></a>
+          <%= link_to 'Rent Clothing', products_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Community</a>
@@ -41,7 +48,11 @@
         <a class="nav-link" href="#">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sign in/Register</a>
+        <% if user_signed_in? %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        <% else %>
+          <%= link_to 'Sign in/Register', new_user_session_path, class: 'nav-link' %>
+        <% end %>
       </li>
     </ul>
   </div>
