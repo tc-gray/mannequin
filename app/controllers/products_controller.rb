@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.all
@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    # we need to authorize anyone to make a product (if they have an account)
+    # we need to authorize anyone to make a product (when they have an account)
   end
 
   def create
@@ -27,9 +27,14 @@ class ProductsController < ApplicationController
   end
 
   def update
+    if @product.update(product_params)
+      redirect_to @product, notice: 'Product was successfully updated'
+    end
   end
 
   def destroy
+    @product.destroy
+    redirect_to products_path
   end
 
   private
