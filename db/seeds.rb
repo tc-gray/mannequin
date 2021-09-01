@@ -40,9 +40,11 @@ CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
     size: SIZES.sample,
     user_id: User.first.id
   )
-  url = "https://source.unsplash.com/random?sig=#{rand(1..60)}/&clothes/800x600"
-  file = URI.open(url)
-  product.photos.attach(io: file, filename: "#{product.name.gsub(" ", "-")}.jpeg", content_type: 'image/jpeg')
+  2.times do
+    url = "https://source.unsplash.com/random?sig=#{rand(1..60)}/&clothes/800x600"
+    file = URI.open(url)
+    product.photos.attach(io: file, filename: "#{product.name.gsub(" ", "-")}.jpeg", content_type: 'image/jpeg')
+  end
 end
 #  product = Product.create!(name: 'Vintage Jeans', description: 'Really nice', category: 'Tops', size:'8', user_id: User.first.id)
 
