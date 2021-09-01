@@ -1,9 +1,22 @@
+.all-container {
+  // display: flex;
+  // flex-direction: column;
+  margin-top: 50px;
+}
+
 .product-container {
-  margin: 20px auto;
+  margin: 0 auto;
+  height: 100%;
 }
 
 .product-details-container {
   padding-bottom: 5px;
+  height: 100%;
+}
+
+.product-actions {
+  padding-bottom: 2px;
+  margin: 0 15px;
 }
 
 .product-details {
@@ -53,8 +66,12 @@
 .product-image {
   background-size: cover;
   object-fit: cover;
-  height: 100%;
+  height: 400px;
   width: 100%;
+}
+
+.product-image-container {
+  height: 100%;
 }
 
 // .carousel-img {
