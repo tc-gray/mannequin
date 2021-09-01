@@ -5,44 +5,31 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-3">
-      <div class="bg-dark p-5"></div>
+      <div class="filter-bar bg-light p-5 mt-3"></div>
     </div>
     <div class="col-lg-9">
       <div class="row">
-        <% @products[1..5].each do |product| %>
-          <div class="col-lg-4 mt-3">
-            <div class="card-product rounded">
-              <%# add cloudinary 1st image %>
-              <div class="img-wrapper">
-                <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" />
-              </div>
-              <div class="card-product-infos">
-                <div>
-                  <h2 class=""><%= product.name.upcase %></h2>
-                  <p><%= product.category %></p>
+        <% @products.each do |product| %>
+          <div class="col-lg-4 col-md-6">
+            <%= link_to product_path(product) do %>
+              <div class="card-product rounded mt-3">
+                <%# add cloudinary 1st image %>
+                <div class="img-wrapper">
+                  <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                  <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
                 </div>
-                <h2 class="card-product-pricing">£99.99</h2>
-                <i class="far fa-heart card-product-save"></i>
+                <div class="card-product-infos">
+                  <div>
+                    <h2 class=""><%= product.name.upcase %></h2>
+                    <p><%= product.category.upcase %></p>
+                  </div>
+                  <h2 class="card-product-pricing">£99.99</h2>
+                  <i class="far fa-heart card-product-save"></i>
+                </div>
               </div>
-            </div>
+            <% end %>
           </div>
         <% end %>
-          <div class="col-lg-4 mt-3">
-            <div class="card-product rounded">
-              <%# add cloudinary 1st image %>
-              <div class="img-wrapper">
-                <img src="https://source.unsplash.com/VlMMBxSZuSI/700x300" />
-              </div>
-              <div class="card-product-infos">
-                <div>
-                  <h2>Title here</h2>
-                  <p>Short description here!</p>
-                </div>
-                <h2 class="card-product-pricing">£99.99</h2>
-                <i class="far fa-heart card-product-save"></i>
-              </div>
-            </div>
-          </div>
       </div>
     </div>
   </div>
