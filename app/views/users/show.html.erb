@@ -1,11 +1,13 @@
 <div class="container d-flex mt-5 align-items-center">
   <% if @user.photo.attached? %>
-        <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill, class: 'avatar-large m-3' %>
+    <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill, class: 'avatar-large avatar-profile' %>
   <% else %>
-        <img class="avatar-large m-3" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
+    <img class="avatar-large avatar-profile" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
   <% end %>
-  <h1>Hi I'm <%= @user.first_name.capitalize %></h1>
+  <h1>Hi, <%= @user.first_name.capitalize %></h1>
 </div>
+
+<hr>
 
 <% @pending_user_bookings = @user.bookings.select do |booking| %>
   <% booking.status == "Pending" %>
@@ -59,6 +61,7 @@
 <hr>
 
 <div class="container">
+  <h1>My products</h1>
   <% if @user.products.length > 0 %>
     <div class="row">
       <% @user.products.each do |product| %>
@@ -83,7 +86,7 @@
       </div>
       <% end %>
     <% else %>
-    <h4 class="m-5 text-center">Unfortunately <%= @user.first_name %> has no products for rental.</h4>
+    <h4 class="m-5 text-center">You have no products for rental. Anything you want to rent out?</h4>
   </div>
   <% end %>
 </div>
