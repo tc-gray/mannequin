@@ -5,3 +5,8 @@
 .brand-title {
   font-weight: lighter;
 }
+
+.brand-title:hover {
+  text-decoration: none !important;
+  color: black;
+}

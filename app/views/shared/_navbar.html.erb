@@ -3,6 +3,9 @@
 <nav class="p-2 desktop-nav-section">
   <ul class=" nav justify-content-center">
     <li class="nav-item">
+      <%= link_to 'Home', root_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
       <%= link_to 'Rent Clothing', products_path, class: 'nav-link' %>
     </li>
     <li class="nav-item">
@@ -23,10 +26,21 @@
     </li>
     <li>
       <div class="input-group rounded search-bar">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <span class="input-group-text border-0" id="search-addon">
-        <i class="fas fa-search"></i>
-        </span>
+        <%= form_tag products_path, method: :get do %>
+        <div class="d-flex">
+            <%= text_field_tag :query,
+                              params[:query],
+                              class: "form-control",
+                              id: "search-addon",
+                              placeholder: "Start renting!"
+            %>
+            <%= button_tag(type: "submit", class: "input-group-text border-0") do %>
+              <span class="" id="search-addon">
+                <i class="fas fa-search"></i>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </li>
   </ul>
@@ -40,6 +54,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+          <%= link_to 'Home', root_path, class: 'nav-link' %>
+      </li>
       <li class="nav-item">
           <%= link_to 'Rent Clothing', products_path, class: 'nav-link' %>
       </li>
@@ -59,9 +76,20 @@
     </ul>
   </div>
   <div class="input-group rounded search-bar">
-    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-    <span class="input-group-text border-0" id="search-addon">
-    <i class="fas fa-search"></i>
-    </span>
+    <%= form_tag products_path, method: :get do %>
+    <div class="d-flex">
+        <%= text_field_tag :query,
+                          params[:query],
+                          class: "form-control",
+                          id: "search-addon",
+                          placeholder: "Start renting!"
+        %>
+        <%= button_tag(type: "submit", class: "input-group-text border-0") do %>
+          <span class="" id="search-addon">
+            <i class="fas fa-search"></i>
+          </span>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </nav>

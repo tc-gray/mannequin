@@ -1,34 +1,43 @@
 <div class="container text-right mt-5">
+  <%# PLACEHOLDER ** TBD ** %>
   <p>sort by</p>
 </div>
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-3">
-      <div class="filter-bar bg-light p-5 mt-3"></div>
+      <div class="filter-bar bg-info p-5 mt-3 h-25">
+        <h6>FILTER</h6>
+      </div>
     </div>
     <div class="col-lg-9">
       <div class="row">
-        <% @products.each do |product| %>
-          <div class="col-lg-4 col-md-6">
-            <%= link_to product_path(product) do %>
-              <div class="card-product rounded mt-3">
-                <%# add cloudinary 1st image %>
-                <div class="img-wrapper">
-                  <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
-                  <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-                </div>
-                <div class="card-product-infos">
-                  <div>
-                    <h2 class=""><%= product.name.upcase %></h2>
-                    <p><%= product.category.upcase %></p>
-                  </div>
-                  <h2 class="card-product-pricing">£99.99</h2>
-                  <i class="far fa-heart card-product-save"></i>
-                </div>
-              </div>
-            <% end %>
+        <% if @products.length.zero?  %>
+          <div class="col-lg-12">
+            <h5>Sorry there are no results that match your search criteria. Please try again</h5>
           </div>
+        <% else %>
+          <% @products.each do |product| %>
+            <div class="col-lg-4 col-md-6">
+              <%= link_to product_path(product) do %>
+                <div class="card-product rounded mt-3">
+                  <%# add cloudinary 1st image %>
+                  <div class="img-wrapper">
+                    <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                    <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+                  </div>
+                  <div class="card-product-infos">
+                    <div>
+                      <h2 class=""><%= product.name.upcase %></h2>
+                      <p><%= product.category.upcase %></p>
+                    </div>
+                    <h2 class="card-product-pricing">£99.99</h2>
+                    <i class="far fa-heart card-product-save"></i>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

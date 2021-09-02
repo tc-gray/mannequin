@@ -49,14 +49,18 @@
             <h2><%= @product.name %></h2>
             <img class="card-trip-user avatar-bordered" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
           </div>
-          <p><%= @product.description %></p>
-          <hr class="horizontal-rule">
-          <p>Category: <%= @product.category %></p>
-          <p>Size: <%= @product.size %></p>
-        </div>
-        <div class="btn-container">
+        <p><%= @product.description %></p>
+        <hr class="horizontal-rule">
+        <p>Category: <%= @product.category %></p>
+        <p>Size: <%= @product.size %></p>
+      </div>
+      <div class="btn-container">
+        <% if user_signed_in? %>
           <%= link_to 'BOOK NOW', new_product_booking_path(@product), class: "btn btn-primary btn-book" %>
-        </div>
+        <% else %>
+          Please Login or Register now to book this item.
+          <%= link_to "LOGIN" %>
+        <% end %>
       </div>
     </div>
   </div>
