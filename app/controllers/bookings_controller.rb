@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-
   def new
     @booking = Booking.new
     @product = Product.find(params[:product_id])
@@ -13,7 +12,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to confirmation_product_bookings_path(@product)
     else
-      render "products/show"
+      render "bookings/new"
     end
   end
 
@@ -27,5 +26,4 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
   end
-
 end
