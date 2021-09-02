@@ -14,9 +14,9 @@ class Product < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_name_and_description_and_size,
-                  against: [ :name, :description, :size ],
-                  associated_against: { user: [ :username, :first_name, :last_name ] },
-                  using: {
-                    tsearch: { prefix: true }
-                  }
+    against: [ :name, :description, :size ],
+    associated_against: { user: [ :username, :first_name, :last_name ] },
+    using: {
+      tsearch: { prefix: true }
+    }
 end
