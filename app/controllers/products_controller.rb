@@ -3,12 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     if params[:query].present?
-      sql_query = " \
-        products.name ILIKE :query \
-        OR products.description ILIKE :query \
-        OR users.username ILIKE :query \
-      "
-      @products = Product.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      @products = Product.search_by_name_and_description_and_size_and_category(params[:query])
     else
       @products = Product.all
     end
