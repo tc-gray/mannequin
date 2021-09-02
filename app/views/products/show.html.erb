@@ -8,13 +8,13 @@
   <div class="container product-container">
     <div class="row">
       <div class="col-md-8 product-image-container">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <% @product.photos.each_with_index do |photo, index| %>
               <% if index == 0 %>
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators-1" data-slide-to="0" class="active"></li>
               <% else %>
-                <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>"></li>
+                <li data-target="#carouselExampleIndicators-1" data-slide-to="<%= index %>"></li>
               <% end %>
             <% end %>
           </ol>
@@ -23,21 +23,21 @@
             <% @product.photos.each_with_index do |photo, index| %>
             <% if index == 0 %>
             <div class="carousel-item active carousel-img">
-              <%= cl_image_tag photo.key, style: 'width: 100%;' %>
+              <%= cl_image_tag photo.key, :height=>500, style: 'width: 100%;' %>
             </div>
             <% else %>
             <div class="carousel-item carousel-img">
-              <%= cl_image_tag photo.key, style: 'width: 100%;' %>
+              <%= cl_image_tag photo.key, :height=>500, style: 'width: 100%;' %>
             </div>
             <% end %>
             <% end %>
             <% end %>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <a class="carousel-control-prev" href="#carouselExampleIndicators-1" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <a class="carousel-control-next" href="#carouselExampleIndicators-1" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -55,7 +55,7 @@
           <p>Size: <%= @product.size %></p>
         </div>
         <div class="btn-container">
-          <button class="btn btn-primary btn-book">BOOK NOW</button>
+          <%= link_to 'BOOK NOW', new_product_booking_path(@product), class: "btn btn-primary btn-book" %>
         </div>
       </div>
     </div>
@@ -67,17 +67,9 @@
 </div>
 
 <div class="other-products">
-  <div class="container">
-    <div class="row other-products-container">
-      <div class="col-md-3 product-image">
-        <img src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" style="width: 100%;" class="d=block w-100" />
-      </div>
-      <div class="col-md-3 product-image">
-        <img src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" style="width: 100%;" class="d=block w-100" />
-      </div>
-      <div class="col-md-3 product-image">
-        <img src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" style="width: 100%;" class="d=block w-100" />
-      </div>
+  <div class="row carousel-row">
+    <div class="col-md-8">
+      <%= render 'shared/carousel' %>
     </div>
   </div>
 </div>

@@ -56,13 +56,6 @@
   margin: 50px 0;
 }
 
-.other-products-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-}
-
 .product-image {
   background-size: cover;
   object-fit: cover;
@@ -72,6 +65,11 @@
 
 .product-image-container {
   height: 100%;
+}
+
+.carousel-row {
+  display: flex;
+  justify-content: center;
 }
 
 // .carousel-img {
