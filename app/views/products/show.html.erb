@@ -105,11 +105,11 @@
     </div>
 
     <div class="col-md-6">
-      <h2 class="see-reviews-text">See this product's reviews</h2>
+      <h2 class="see-reviews-text">See this product's latest reviews</h2>
       <% if @product.product_reviews.empty? %>
       <small><em>Be the first one to review this product!</em></small>
       <% else %>
-      <% @product.product_reviews[1..5].each do |review| %>
+      <% @product.product_reviews[-5..-1].each do |review| %>
       <div class="review-content">
         <p><%= review.user.email %></p>
         <p><% review.rating.times do %>
