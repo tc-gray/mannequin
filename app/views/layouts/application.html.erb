@@ -15,10 +15,14 @@
   </head>
 
   <body>
-    <%= render 'shared/header' %>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div class="content">
+      <div class="content-inside">
+        <%= render 'shared/header' %>
+        <%= render 'shared/navbar' %>
+        <%= render 'shared/flashes' %>
+        <%= yield %>
+      </div>
+    </div>
     <%= render 'shared/footer' %>
-  </body>
+ </body>
 </html>

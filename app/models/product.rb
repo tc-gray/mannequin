@@ -11,4 +11,12 @@ class Product < ApplicationRecord
 
   SIZES = ['6', '8', '10', '12', '14', '16', '18']
   CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
+
+  include PgSearch::Model
+  pg_search_scope :search_by_name_and_description_and_size,
+                  against: [ :name, :description, :size ],
+                  associated_against: { user: [ :username, :first_name, :last_name ] },
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end

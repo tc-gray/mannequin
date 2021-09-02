@@ -2,7 +2,16 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :update, :destroy]
 
   def index
-    @products = Product.all
+    if params[:query].present?
+      sql_query = " \
+        products.name ILIKE :query \
+        OR products.description ILIKE :query \
+        OR users.username ILIKE :query \
+      "
+      @products = Product.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @products = Product.all
+    end
   end
 
   def show
