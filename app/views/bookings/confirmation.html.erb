@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>YOUR ORDER CONFIRMATION</h1>
+  <p>Your item has been successfully booked </p>
+  <p>FROM: <%=@booking.start_date%> TO: <%=@booking.end_date%> 📅 </p>
+</div>
+
+<div class="container">
+  <h2>Other items from this user:</h2>
+  <%= render 'shared/carousel' %>
+</div>
