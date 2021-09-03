@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
       @products = Product.search_by_name_and_description_and_size_and_category(params[:query])
       session[:search_query] = params[:query]
     elsif params[:category].present?
-      raise
       if session[:search_query]
         @search = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
         # @products = @search.search_by_name_and_description_and_size_and_category(params[:category])
