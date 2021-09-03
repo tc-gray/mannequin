@@ -31,6 +31,7 @@ puts "User created"
 
 SIZES = ['6', '8', '10', '12', '14', '16', '18']
 CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
+PRICES = [2.50, 4.50, 9.50, 7.50, 20, 10, 2.99]
 
 20.times do
   product = Product.create!(
@@ -38,6 +39,7 @@ CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
     description: Faker::Hipster.sentence,
     category: CATEGORY.sample,
     size: SIZES.sample,
+    price: PRICES.sample,
     user_id: User.first.id
   )
   2.times do

@@ -1,4 +1,8 @@
-<div class="container text-right mt-5">
+<div class="container text-center mt-3">
+      <h1>Products</h1>
+</div>
+
+<div class="container text-right mt-3">
   <%# PLACEHOLDER ** TBD ** %>
   <p>sort by</p>
 </div>
@@ -18,7 +22,7 @@
           </div>
         <% else %>
           <% @products.each do |product| %>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 grow col-md-6">
               <%= link_to product_path(product) do %>
                 <div class="card-product rounded mt-3">
                   <%# add cloudinary 1st image %>
@@ -31,7 +35,7 @@
                       <h2 class=""><%= product.name.upcase %></h2>
                       <p><%= product.category.upcase %></p>
                     </div>
-                    <h2 class="card-product-pricing">£99.99</h2>
+                    <h2 class="card-product-pricing"><p><%= humanized_money_with_symbol(product.price) %></p></h2>
                     <i class="far fa-heart card-product-save"></i>
                   </div>
                 </div>

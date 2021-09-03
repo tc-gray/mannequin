@@ -7,7 +7,7 @@
   </div>
   <div class="container product-container">
     <div class="row">
-      <div class="col-md-8 product-image-container">
+      <div class="col-sm-12 col-md-8 product-image-container">
         <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <% @product.photos.each_with_index do |photo, index| %>
@@ -18,16 +18,16 @@
               <% end %>
             <% end %>
           </ol>
-          <div class="carousel-inner" style=" width:100%; height: 500px !important; object-fit:cover;">
+          <div class="carousel-inner" style=" width:100%; object-fit:cover;">
             <% if @product.photos.attached? %>
             <% @product.photos.each_with_index do |photo, index| %>
             <% if index == 0 %>
             <div class="carousel-item active carousel-img">
-              <%= cl_image_tag photo.key, :height=>500, style: 'width: 100%;' %>
+              <%= cl_image_tag photo.key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img"%>
             </div>
             <% else %>
             <div class="carousel-item carousel-img">
-              <%= cl_image_tag photo.key, :height=>500, style: 'width: 100%;' %>
+              <%= cl_image_tag photo.key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img" %>
             </div>
             <% end %>
             <% end %>
@@ -43,24 +43,31 @@
           </a>
         </div>
       </div>
-      <div class="col-md-4 details-container">
+      <div class="col-sm-12 col-md-4 details-container">
         <div class="product-details-container">
+          <h2><%= @product.name %></h2>
           <div class="product-details">
-            <h2><%= @product.name %></h2>
             <img class="card-trip-user avatar-bordered" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
+            <p><%= link_to @product.user.email, user_profile_path(@product.user) %></p>
           </div>
-        <p><%= @product.description %></p>
-        <hr class="horizontal-rule">
-        <p>Category: <%= @product.category %></p>
-        <p>Size: <%= @product.size %></p>
-      </div>
-      <div class="btn-container">
-        <% if user_signed_in? %>
-          <%= link_to 'BOOK NOW', new_product_booking_path(@product), class: "btn btn-primary btn-book" %>
-        <% else %>
-          Please Login or Register now to book this item.
-          <%= link_to "LOGIN" %>
-        <% end %>
+          <hr class="horizontal-rule">
+          <p><%= @product.description %></p>
+          <hr class="horizontal-rule">
+          <p>CATEGORY: <%= @product.category %></p>
+          <p>SIZE: <%= @product.size %></p>
+          <p>PRICE: <%= humanized_money_with_symbol(@product.price) %></p>
+          <div class="btn-container">
+            <%= link_to "Ask the seller", "#", class: "btn btn-ghost", id: "btn-ghost" %>
+            <%= link_to "♡ Add to favourites", "#", class: "btn btn-ghost", id: "btn-ghost" %>
+            <% if user_signed_in? %>
+              <% if @product.user != current_user %>
+                <%= link_to 'BOOK NOW', new_product_booking_path(@product), class: "btn btn-primary btn-book" %>
+              <% end %>
+            <% else %>
+              Please Login or Register now to book this item.
+              <%= link_to "LOGIN" %>
+            <% end %>
+        </div>
       </div>
     </div>
   </div>
@@ -72,7 +79,7 @@
 
 <div class="other-products">
   <div class="row carousel-row">
-    <div class="col-md-8">
+    <div class="col-sm-12 col-md-10">
       <%= render 'shared/carousel' %>
     </div>
   </div>
@@ -80,7 +87,7 @@
 
 <div class="container reviews-container">
   <div class="row reviews-container-row">
-    <div class="col-md-6">
+    <div class="col-sm-12 col-md-6">
       <h2 class="add-review-text">Add a new product review</h2>
       <%= simple_form_for [@product, @product_review] do |f| %>
       <%= f.error_notification %>
@@ -100,12 +107,12 @@
       <% end %>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-sm-12 col-md-6">
       <h2 class="see-reviews-text">See this product's latest reviews</h2>
       <% if @product.product_reviews.empty? %>
-      <small><em>Be the first one to review this product!</em></small>
+        <small><em>Be the first one to review this product!</em></small>
       <% else %>
-      <% @product.product_reviews[-5..-1].each do |review| %>
+      <% @product.product_reviews.last(5).each do |review| %>
       <div class="review-content">
         <p><%= review.user.email %></p>
         <p><% review.rating.times do %>

@@ -1,0 +1,45 @@
+<div class="container d-flex mt-5 align-items-center">
+  <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill, class: 'avatar-large m-3' %>
+  <% else %>
+        <img class="avatar-large m-3" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
+  <% end %>
+  <div class="profile-details">
+    <h1>Hi, I'm <%= @user.first_name.capitalize %></h1>
+  </div>
+  <%= link_to "Message", "#", class: "btn btn-ghost-2", id: "btn-ghost-2" %>
+  <%= link_to "Follow", "#", class: "btn btn-ghost-3", id: "btn-ghost-3" %>
+</div>
+
+<hr>
+
+<div class="container">
+  <h1><%= @user.first_name.capitalize %>'s products</h1>
+  <% if @user.products.length > 0 %>
+    <div class="row">
+      <% @user.products.each do |product| %>
+        <div class="col-sm-6 col-md-3">
+          <%= link_to product_path(product) do %>
+            <div class="card-product rounded mt-3">
+              <%# add cloudinary 1st image %>
+              <div class="img-wrapper">
+                <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+              </div>
+              <div class="card-product-infos">
+            <div>
+              <h2 class=""><%= product.name.upcase %></h2>
+              <p><%= product.category.upcase %></p>
+            </div>
+            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(product.price) %></h2>
+            <i class="far fa-heart card-product-save"></i>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+    <% else %>
+    <h4 class="m-5 text-center">Unfortunately <%= @user.first_name %> has no products for rental.</h4>
+  </div>
+  <% end %>
+</div>
