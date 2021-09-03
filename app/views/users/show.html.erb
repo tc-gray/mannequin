@@ -63,6 +63,46 @@
     <% end %>
   <% end %>
   </div>
+  <div class="row">
+
+  <% current_user.requested_bookings.each do |booking| %>
+    <% if booking.status == "Pending" %>
+        <% booking.product %>
+        <div class="col-sm-6 col-md-3">
+          <%= link_to product_path(booking.product) do %>
+            <div class="card-product rounded mt-3">
+              <%# add cloudinary 1st image %>
+              <div class="img-wrapper">
+                <%= cl_image_tag booking.product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+              </div>
+              <div class="card-product-infos">
+            <div>
+              <h2 class=""><%= booking.product.name.upcase %></h2>
+              <p><%= booking.product.category.upcase %></p>
+              <p>BOOKING STATUS:<%= booking.status %></p>
+            </div>
+            <h2 class="card-product-pricing">£99.99</h2>
+            <i class="far fa-heart card-product-save"></i>
+          </div>
+        </div>
+        <% end %>
+        <% if current_user == booking.product.user %>
+          <div class="accept-decline-buttons">
+            <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
+              <%= f.hidden_field :status, value: "Accepted" %>
+              <%= f.submit "Accept", class: "btn btn-success" %>
+            <% end %>
+            <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
+              <%= f.hidden_field :status, value: "Declined" %>
+              <%= f.submit "Decline", class: "btn btn-danger" %>
+            <% end %>
+         </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
 </div>
 
 <hr>
