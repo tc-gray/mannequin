@@ -23,14 +23,19 @@ require("channels")
 // ----------------------------------------------------
 
 // External imports
+import "controllers"
 import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initStarRating } from '../plugins/init_star_rating';
+// import { scrollListner } from '../plugins/fixed_nav';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initStarRating();
+  // fixNavOnScroll();
+  // scrollListner();
+
 });
