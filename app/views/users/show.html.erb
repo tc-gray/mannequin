@@ -86,7 +86,10 @@
       </div>
       <% end %>
     <% else %>
-    <h4 class="m-5 text-center">You have no products for rental. Anything you want to rent out?</h4>
+    <div class="container my-account-products-container">
+      <h4 class="m-5 text-center">You have no products for rental. Anything you want to rent out?</h4>
+      <%= link_to 'Add a new product', new_product_path, class: "btn btn-flat" %>
+    </div>
   </div>
   <% end %>
 </div>
