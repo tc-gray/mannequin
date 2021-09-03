@@ -4,7 +4,10 @@
   <% else %>
     <img class="avatar-large avatar-profile" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
   <% end %>
-  <h1>Hi, <%= current_user.first_name.capitalize %></h1>
+  <div class="my-account-details">
+    <h1>Hi, <%= current_user.first_name.capitalize %></h1>
+    <p>Check out your products and bookings below.</p>
+  </div>
 </div>
 
 <hr>
@@ -65,7 +68,12 @@
 <hr>
 
 <div class="container">
-  <h1>My products</h1>
+  <div class="my-account-products">
+    <h1>My products</h1>
+    <% if current_user.products.count > 0 %>
+      <%= link_to 'Add a new product', new_product_path, class: "btn btn-flat" %>
+    <% end %>
+  </div>
   <% if current_user.products.length > 0 %>
     <div class="row">
       <% current_user.products.each do |product| %>

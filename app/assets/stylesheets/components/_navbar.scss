@@ -1,10 +1,12 @@
 .desktop-nav-section {
   background-color: $light-pink !important;
+  z-index: 1000;
 }
 
 .mobile-nav-section {
   display: none;
   background-color: $light-pink !important;
+  z-index: 1000;
 }
 
 .nav-item {
@@ -31,6 +33,12 @@
   background-color: $light-pink !important;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 
 // media queries
 
@@ -42,6 +50,7 @@
 .search-bar {
   right: 10px;
   top: 9px;
+  width: 200px;
 }
 }
 
