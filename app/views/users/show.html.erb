@@ -42,7 +42,7 @@
               <p><%= booking.product.category.upcase %></p>
               <p>BOOKING STATUS:<%= booking.status %></p>
             </div>
-            <h2 class="card-product-pricing">£99.99</h2>
+            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(booking.product.price) %></h2>
             <i class="far fa-heart card-product-save"></i>
           </div>
         </div>
@@ -90,7 +90,7 @@
               <h2 class=""><%= product.name.upcase %></h2>
               <p><%= product.category.upcase %></p>
             </div>
-            <h2 class="card-product-pricing">£99.99</h2>
+            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(product.price) %></h2>
             <i class="far fa-heart card-product-save"></i>
           </div>
         </div>
