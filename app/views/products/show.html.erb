@@ -7,7 +7,7 @@
   </div>
   <div class="container product-container">
     <div class="row">
-      <div class="col-md-8 product-image-container">
+      <div class="col-sm-12 col-md-8 product-image-container">
         <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <% @product.photos.each_with_index do |photo, index| %>
@@ -43,7 +43,7 @@
           </a>
         </div>
       </div>
-      <div class="col-md-4 details-container">
+      <div class="col-sm-12 col-md-4 details-container">
         <div class="product-details-container">
           <h2><%= @product.name %></h2>
           <div class="product-details">
@@ -78,7 +78,7 @@
 
 <div class="other-products">
   <div class="row carousel-row">
-    <div class="col-md-10">
+    <div class="col-sm-12 col-md-10">
       <%= render 'shared/carousel' %>
     </div>
   </div>
@@ -86,7 +86,7 @@
 
 <div class="container reviews-container">
   <div class="row reviews-container-row">
-    <div class="col-md-6">
+    <div class="col-sm-12 col-md-6">
       <h2 class="add-review-text">Add a new product review</h2>
       <%= simple_form_for [@product, @product_review] do |f| %>
       <%= f.error_notification %>
@@ -106,7 +106,7 @@
       <% end %>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-sm-12 col-md-6">
       <h2 class="see-reviews-text">See this product's latest reviews</h2>
       <% if @product.product_reviews.empty? %>
         <small><em>Be the first one to review this product!</em></small>

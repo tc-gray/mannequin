@@ -4,7 +4,11 @@
   <% else %>
         <img class="avatar-large m-3" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
   <% end %>
-  <h1>Hi, I'm <%= @user.first_name.capitalize %></h1>
+  <div class="profile-details">
+    <h1>Hi, I'm <%= @user.first_name.capitalize %></h1>
+  </div>
+  <%= link_to "Message", "#", class: "btn btn-ghost-2", id: "btn-ghost-2" %>
+  <%= link_to "Follow", "#", class: "btn btn-ghost-3", id: "btn-ghost-3" %>
 </div>
 
 <hr>
