@@ -1,7 +1,7 @@
 <%= form_tag products_path, method: :get do %>
 <% ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes'].each do |category| %>
   <%= label_tag('category', category) %>
-  <%= check_box_tag 'category', category, false, class: 'x' %>
+  <%= check_box_tag 'category', category, false, class: 'classic-checkbox' %>
   <br>
 <% end %>
   <%= submit_tag "Search", class: "btn btn-primary" %>
