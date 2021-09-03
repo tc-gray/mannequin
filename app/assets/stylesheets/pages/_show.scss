@@ -2,6 +2,7 @@
   // display: flex;
   // flex-direction: column;
   margin-top: 50px;
+  padding: 0 50px 50px 50px;
 }
 
 .product-container {
@@ -10,8 +11,11 @@
 }
 
 .product-details-container {
-  padding-bottom: 5px;
+  padding: 20px;
   height: 100%;
+  background-color: white;
+  border-radius: 4px;
+  border-top: 6px solid rgb(150, 131, 132);
 }
 
 .product-actions {
@@ -22,8 +26,8 @@
 .product-details {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin: 0 0 10px 0;
+  align-items: center;
+  margin: 10px 0;
 }
 
 .details-container {
@@ -33,22 +37,48 @@
 }
 
 .horizontal-rule {
-  width: 80%;
+  width: 100%;
+}
+
+.btn-container a {
+  text-decoration: none;
 }
 
 .btn-book {
   background-color: rgb(150, 131, 132);
   border: 1px solid rgb(150, 131, 132);
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 8px 24px;
   width: 100%;
   margin-bottom: auto;
+  text-decoration: none;
 }
 
 .btn-book:hover {
   background-color: transparent;
   color: black;
   border: 1px solid rgb(150, 131, 132);
+  text-decoration: none;
+}
+
+.btn-ghost {
+  color: rgb(150, 131, 132);
+  border: 1px solid rgb(150, 131, 132);
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: lighter;
+  width: 100%;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: rgb(150, 131, 132);
+  color: white;
 }
 
 .more-from-this-user {
@@ -56,20 +86,25 @@
   margin: 50px 0;
 }
 
-.product-image {
-  background-size: cover;
-  object-fit: cover;
-  height: 400px;
-  width: 100%;
-}
-
 .product-image-container {
   height: 100%;
+  border-radius: 4px;
+}
+
+.product-img {
+  background-size: cover;
+  object-fit: cover;
+  width: 100%;
 }
 
 .carousel-row {
   display: flex;
   justify-content: center;
+  margin: 0 0 40px 0;
+}
+
+.carousel-card {
+  margin: 0 10px;
 }
 
 // .carousel-img {
