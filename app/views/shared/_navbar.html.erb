@@ -1,6 +1,6 @@
 <%# desktop nav ***************************** %>
 
-<nav data-controller="navbar" id="navbar" class="p-2 desktop-nav-section">
+<nav data-controller="navbar" id="navbar" class="p-2 navbar-mqn desktop-nav-section">
   <ul class="nav justify-content-center">
     <li class="nav-item">
       <%= link_to 'Home', root_path, class: 'nav-link' %>
@@ -22,7 +22,18 @@
     <li class="nav-item">
       <%# <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Sign in/Register</a> %>
       <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            My Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: -70px">
+            <a class="dropdown-item" href="#"></a>
+            <%= link_to 'My Profile', user_path, class: 'dropdown-item' %>
+            <%= link_to 'Add a Listing', new_product_path, class: 'dropdown-item' %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+          </div>
+        </li>
       <% else %>
         <%= link_to 'Sign in/Register', new_user_session_path, class: 'nav-link' %>
       <% end %>
@@ -51,7 +62,7 @@
 
 <%# mobile nav ***************************** %>
 
-<nav class="mobile-nav-section navbar navbar-expand-lg navbar-light bg-light">
+<nav class="mobile-nav-section navbar-mqn navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
