@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = current_user
-    @pending_bookings = Booking.where(status: "Pending")
+    @pending_bookings = Booking.where(status: "Pending", user: current_user)
   end
 
   def profile
