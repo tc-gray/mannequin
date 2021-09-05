@@ -1,10 +1,10 @@
 <div class="container booking-form-container mt-5">
-  <div class="row">
-    <div class="col-md-4 col-sm-12">
+  <div class="row booking-form-row">
+    <div class="col-md-5 col-sm-12">
       <h1>MAKE A NEW BOOKING</h1>
       <%= render 'shared/new_booking' %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5 col-sm-12">
       <%= link_to product_path(@product) do %>
       <div class="card-product rounded mt-3">
         <%# add cloudinary 1st image %>
@@ -17,7 +17,7 @@
             <h2 class=""><%= @product.name.upcase %></h2>
             <p><%= @product.category.upcase %></p>
           </div>
-          <h2 class="card-product-pricing">£99.99</h2>
+          <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
           <i class="far fa-heart card-product-save"></i>
         </div>
       </div>

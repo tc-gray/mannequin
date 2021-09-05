@@ -29,6 +29,7 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initStarRating } from '../plugins/init_star_rating';
+import { slideOnScroll } from '../plugins/scroll_slide';
 // import { scrollListner } from '../plugins/fixed_nav';
 
 document.addEventListener('turbolinks:load', () => {
@@ -37,5 +38,5 @@ document.addEventListener('turbolinks:load', () => {
   initStarRating();
   // fixNavOnScroll();
   // scrollListner();
-
+  slideOnScroll();
 });
