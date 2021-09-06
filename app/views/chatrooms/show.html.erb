@@ -1,5 +1,8 @@
 <div class="container chatroom-show-container chat-panel">
   <div class="row no-gutters">
+    <div class="col-12 col-md-3">
+      <%= render partial: 'chatrooms' %>
+    </div>
     <div class="col-sm-12 col-md-8">
       <h1>#<%= @chatroom.name %></h1>
       <div id="messages" class="chat-bubble chat-bubble--right" data-chatroom-id="<%= @chatroom.id %>">

@@ -7,113 +7,124 @@
   }
 }
 
+// Chatroom Index Page Styling
+.chatroom-index-container {
+  margin: 40px auto;
+}
+
+// Chatroom Show Page Styling
+
+.chatroom-show-container {
+  margin: 40px auto;
+}
+
 // new styling for chatroom show and bubbles
 // Video tutorial/codealong here: https://youtu.be/fCpw5i_2IYU
-// $blue: #74b9ff;
+$blue: #74b9ff;
 
-// .profile-image {
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 40px;
-// }
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+}
 
-// .settings-tray {
-//   background: #eee;
-//   padding: 10px 15px;
-//   border-radius: 7px;
+.settings-tray {
+  background: #eee;
+  padding: 10px 15px;
+  border-radius: 7px;
 
-//   .no-gutters {
-//     padding: 0;
-//   }
+  .no-gutters {
+    padding: 0;
+  }
 
-//   &--right {
-//     float: right;
+  &--right {
+    float: right;
 
-//     i {
-//       margin-top: 10px;
-//       font-size: 25px;
-//       color: grey;
-//       margin-left: 14px;
-//       transition: .3s;
+    i {
+      margin-top: 10px;
+      font-size: 25px;
+      color: grey;
+      margin-left: 14px;
+      transition: .3s;
 
-//       &:hover {
-//         color: $blue;
-//         cursor: pointer;
-//       }
-//     }
-//   }
-// }
+      &:hover {
+        color: $blue;
+        cursor: pointer;
+      }
+    }
+  }
+}
 
-// .search-box {
-//   background: #fafafa;
-//   padding: 10px 13px;
+.search-box {
+  background: #fafafa;
+  padding: 10px 13px;
 
-//   .input-wrapper {
-//     background: #fff;
-//     border-radius: 40px;
+  .input-wrapper {
+    background: #fff;
+    border-radius: 40px;
 
-//     i {
-//       color: grey;
-//       margin-left: 7px;
-//       vertical-align: middle;
-//     }
-//   }
-// }
+    i {
+      color: grey;
+      margin-left: 7px;
+      vertical-align: middle;
+    }
+  }
+}
 
-// .chat-bubble {
-//   padding: 10px 14px;
-//   background: #eee;
-//   margin: 10px 30px;
-//   border-radius: 9px;
-//   position: relative;
-//   animation: fadeIn 1s ease-in;
+.chat-bubble {
+  padding: 10px 14px;
+  background: #eee;
+  margin: 10px 30px;
+  border-radius: 9px;
+  position: relative;
+  animation: fadeIn 1s ease-in;
 
-//   &:after {
-//     content: '';
-//     position: absolute;
-//     top: 50%;
-//     width: 0;
-//     height: 0;
-//     border: 20px solid transparent;
-//     border-bottom: 0;
-//     margin-top: -10px;
-//   }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-bottom: 0;
+    margin-top: -10px;
+  }
 
-//   &--left {
-//     &:after {
-//       left: 0;
-//       border-right-color: #eee;
-//       border-left: 0;
-//       margin-left: -20px;
-//     }
-//   }
+  &--left {
+    &:after {
+      left: 0;
+      border-right-color: #eee;
+      border-left: 0;
+      margin-left: -20px;
+    }
+  }
 
-//   &--right {
-//     &:after {
-//       right: 0;
-//       border-left-color: $blue;
-//       border-right: 0;
-//       margin-right: -20px;
-//     }
-//   }
-// }
+  &--right {
+    &:after {
+      right: 0;
+      border-left-color: $blue;
+      border-right: 0;
+      margin-right: -20px;
+    }
+  }
+}
 
-// .chat-box-tray {
-//   background: #eee;
-//   display: flex;
-//   align-items: baseline;
-//   padding: 10px 15px;
-//   align-items: center;
-//   margin-top: 19px;
-//   bottom: 0;
+.chat-box-tray {
+  background: #eee;
+  display: flex;
+  align-items: baseline;
+  padding: 10px 15px;
+  align-items: center;
+  margin-top: 19px;
+  bottom: 0;
 
-//   i {
-//     color: grey;
-//     font-size: 30px;
-//     vertical-align: middle;
+  i {
+    color: grey;
+    font-size: 30px;
+    vertical-align: middle;
 
-//     &:last-of-type {
-//       margin-left: 25px;
-//     }
-//   }
-// }
+    &:last-of-type {
+      margin-left: 25px;
+    }
+  }
+}

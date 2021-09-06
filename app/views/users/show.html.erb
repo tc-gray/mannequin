@@ -8,9 +8,6 @@
     <h1>Hi, <%= current_user.first_name.capitalize %></h1>
     <p>Check out your products and bookings below.</p>
   </div>
-  <div class="chatrooms-btn">
-    <%= link_to "Your chats", chats_path, class:"btn btn-ghost-3" %>
-  </div>
 </div>
 
 <hr>
@@ -44,8 +41,8 @@
               <h2 class=""><%= booking.product.name.upcase %></h2>
               <p><%= booking.product.category.upcase %></p>
               <p>BOOKING STATUS:<%= booking.status %></p>
+              <h2 class="card-product-pricing"><%= humanized_money_with_symbol(booking.product.price) %></h2>
             </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(booking.product.price) %></h2>
             <i class="far fa-heart card-product-save"></i>
           </div>
         </div>
