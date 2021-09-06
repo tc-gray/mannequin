@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:update]
   resources :user_reviews, only: [:create]
+  resources :orders, only: [:show, :create]
+
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
 end

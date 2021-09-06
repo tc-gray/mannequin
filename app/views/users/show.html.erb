@@ -21,22 +21,21 @@
     <h1>My pending bookings</h1>
   <% else %>
     <h1>My pending bookings</h1>
-    <small>No pending bookings right now ~</small>
+    <small>No pending bookings right now</small>
   <% end %>
   <div class="row">
 
   <% current_user.bookings.each do |booking| %>
-    <% if booking.status == "Pending" %>
-        <% booking.product %>
-        <div class="col-sm-6 col-md-3">
-          <%= link_to product_path(booking.product) do %>
-            <div class="card-product rounded mt-3">
-              <%# add cloudinary 1st image %>
-              <div class="img-wrapper">
-                <%= cl_image_tag booking.product.photos[0].key, height: 300, width: 200, crop: :fill %>
-                <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-              </div>
-              <div class="card-product-infos">
+    <% booking.product %>
+    <div class="col-sm-6 col-md-3">
+      <%= link_to product_path(booking.product) do %>
+        <div class="card-product rounded mt-3">
+            <%# add cloudinary 1st image %>
+          <div class="img-wrapper">
+            <%= cl_image_tag booking.product.photos[0].key, height: 300, width: 200, crop: :fill %>
+              <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+          </div>
+          <div class="card-product-infos">
             <div>
               <h2 class=""><%= booking.product.name.upcase %></h2>
               <p><%= booking.product.category.upcase %></p>
@@ -46,7 +45,8 @@
             <i class="far fa-heart card-product-save"></i>
           </div>
         </div>
-        <% end %>
+      <% end %>
+      <% if booking.status == "Pending" %>
         <% if current_user == booking.product.user %>
           <div class="accept-decline-buttons">
             <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
@@ -57,54 +57,68 @@
               <%= f.hidden_field :status, value: "Declined" %>
               <%= f.submit "Decline", class: "btn btn-danger" %>
             <% end %>
-         </div>
+          </div>
         <% end %>
-      </div>
-    <% end %>
+      <% elsif booking.orders.find_by( user: booking.user).state == "paid"%>
+        <p>Paid</p>
+      <% else %>
+        <button id="pay-<%= booking.id%>" class="btn btn-primary">Pay</button>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+            document.getElementById('pay-<%= booking.id%>').addEventListener('click', () => {
+            const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+            stripe.redirectToCheckout({
+              sessionId: '<%= booking.orders.find_by(user: current_user).checkout_session_id %>'
+            });
+          });
+        </script>
+      <% end %>
+    </div>
   <% end %>
-  </div>
-  <div class="row">
+</div>
+<div class="row">
 
   <% current_user.requested_bookings.each do |booking| %>
-    <% if booking.status == "Pending" %>
-        <% booking.product %>
-        <div class="col-sm-6 col-md-3">
-          <%= link_to product_path(booking.product) do %>
-            <div class="card-product rounded mt-3">
-              <%# add cloudinary 1st image %>
-              <div class="img-wrapper">
-                <%= cl_image_tag booking.product.photos[0].key, height: 300, width: 200, crop: :fill %>
-                <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-              </div>
-              <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= booking.product.name.upcase %></h2>
-              <p><%= booking.product.category.upcase %></p>
-              <p>BOOKING STATUS:<%= booking.status %></p>
-            </div>
-            <h2 class="card-product-pricing">£99.99</h2>
-            <i class="far fa-heart card-product-save"></i>
+    <% booking.product %>
+    <div class="col-sm-6 col-md-3">
+      <%= link_to product_path(booking.product) do %>
+        <div class="card-product rounded mt-3">
+          <%# add cloudinary 1st image %>
+          <div class="img-wrapper">
+            <%= cl_image_tag booking.product.photos[0].key, height: 300, width: 200, crop: :fill %>
+            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
           </div>
+          <div class="card-product-infos">
+          <div>
+            <h2 class=""><%= booking.product.name.upcase %></h2>
+            <p><%= booking.product.category.upcase %></p>
+            <p>BOOKING STATUS:<%= booking.status %></p>
+          </div>
+          <h2 class="card-product-pricing">£99.99</h2>
+          <i class="far fa-heart card-product-save"></i>
         </div>
-        <% end %>
-        <% if current_user == booking.product.user %>
-          <div class="accept-decline-buttons">
-            <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
-              <%= f.hidden_field :status, value: "Accepted" %>
-              <%= f.submit "Accept", class: "btn btn-success" %>
-            <% end %>
-            <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
-              <%= f.hidden_field :status, value: "Declined" %>
-              <%= f.submit "Decline", class: "btn btn-danger" %>
-            <% end %>
-         </div>
-        <% end %>
-      </div>
+      <% end %>
+    </div>
+    <% if booking.status == "Pending" %>
+      <% if current_user == booking.product.user %>
+        <div class="accept-decline-buttons">
+          <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
+            <%= f.hidden_field :status, value: "Accepted" %>
+            <%= f.submit "Accept", class: "btn btn-success" %>
+          <% end %>
+          <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
+            <%= f.hidden_field :status, value: "Declined" %>
+            <%= f.submit "Decline", class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-  </div>
-</div>
+    <% if booking.orders.find_by( user: booking.user).state == "paid"%>
+      <p>Paid</p>
 
+    <% end %>
+  </div>
+<% end %>
 <hr>
 
 <div class="container">

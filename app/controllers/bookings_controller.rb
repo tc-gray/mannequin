@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
     @product = Product.find(params[:product_id])
     @booking.product = @product
     if @booking.save
+      create_order
       redirect_to confirmation_product_bookings_path(@product)
     else
       render "bookings/new"
@@ -56,4 +57,24 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :status)
   end
+
+  def create_order
+    order = Order.create!(booking: @booking, amount: @booking.product.price, state: 'pending', user: current_user)
+
+    session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      line_items: [{ name: @booking.product.name.parameterize,
+        images: [Cloudinary::Utils.cloudinary_url(@booking.product.photos.first.key)],
+        amount: @booking.product.price_cents,
+        currency: 'gbp',
+        quantity: 1
+      }],
+      success_url: order_url(order),
+      cancel_url: order_url(order)
+    )
+
+    order.update(checkout_session_id: session.id)
+    # redirect_to new_order_payment_path(order)
+  end
+
 end

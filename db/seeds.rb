@@ -8,10 +8,13 @@
 require 'faker'
 require 'open-uri'
 
+Order.destroy_all
+Booking.destroy_all
+
 puts "Cleaning database"
 
-User.destroy_all
 Product.destroy_all
+User.destroy_all
 
 puts "Database cleaned"
 
