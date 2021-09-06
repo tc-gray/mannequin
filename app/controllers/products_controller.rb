@@ -10,7 +10,8 @@ class ProductsController < ApplicationController
         @search = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
         @products = @search.where("category ILIKE ?", "%#{params[:category]}%")
       else
-        @products = Product.search_by_name_and_description_and_size_and_category(params[:category])
+        # @products = Product.search_by_name_and_description_and_size_and_category(params[:category])
+        @products = Product.where("category ILIKE ?", "%#{params[:category]}%")
         session.delete("search_query")
       end
     else

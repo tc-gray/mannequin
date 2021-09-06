@@ -1,8 +1,11 @@
-<%= form_tag products_path, method: :get do %>
-<% ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes'].each do |category| %>
-  <%= label_tag('category', category) %>
-  <%= check_box_tag 'category', category, false, class: 'classic-checkbox' %>
-  <br>
-<% end %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+<%= form_tag products_path, method: :get, class: 'filter-form' do %>
+  <% i = 1 %>
+  <% ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes'].each do |category| %>
+    <%= check_box_tag "category", category, false, class: 'classic-checkbox', :id => "category#{i}" %>
+    <%= label_tag("category#{i}", category.upcase) %>
+    <% i += 1 %>
+  <% end %>
+    <br>
+    <br>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
