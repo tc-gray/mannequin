@@ -30,6 +30,7 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 import { initStarRating } from '../plugins/init_star_rating';
 import { slideOnScroll } from '../plugins/scroll_slide';
+import { initChatroomCable } from '..channels/chatroom_channel';
 // import { scrollListner } from '../plugins/fixed_nav';
 
 document.addEventListener('turbolinks:load', () => {
@@ -39,4 +40,5 @@ document.addEventListener('turbolinks:load', () => {
   // fixNavOnScroll();
   // scrollListner();
   slideOnScroll();
+  initChatroomCable();
 });

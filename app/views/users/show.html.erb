@@ -8,6 +8,9 @@
     <h1>Hi, <%= current_user.first_name.capitalize %></h1>
     <p>Check out your products and bookings below.</p>
   </div>
+  <div class="chatrooms-btn">
+    <%= link_to "Your chats", chats_path, class:"btn btn-ghost-3" %>
+  </div>
 </div>
 
 <hr>
