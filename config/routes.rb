@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
     resources :product_reviews, only: [:create]
   end
-  resources :bookings, only: [:update]
+  resources :bookings, only: [:update, :destroy]
   resources :user_reviews, only: [:create]
   resources :orders, only: [:show, :create]
 

@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-
   def create
     booking = Booking.find(params[:booking_id])
     order = Order.create!(booking: booking, amount: booking.product.price, state: 'pending', user: current_user)

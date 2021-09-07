@@ -21,13 +21,17 @@
     <h1>My pending bookings</h1>
   <% else %>
     <h1>My pending bookings</h1>
-    <small>No pending bookings right now</small>
   <% end %>
   <div class="row">
 
   <% current_user.bookings.each do |booking| %>
     <% booking.product %>
     <div class="col-sm-6 col-md-3">
+    <% if booking.orders.find_by(user: booking.user).state == "paid"  || booking.status == "Declined"%>
+     <%= link_to booking_path(booking), method: :delete, remote: true do%>
+       <i class="fas fa-times"></i>
+     <% end %>
+  <% end %>
       <%= link_to product_path(booking.product) do %>
         <div class="card-product rounded mt-3">
             <%# add cloudinary 1st image %>
@@ -94,7 +98,7 @@
             <p><%= booking.product.category.upcase %></p>
             <p>BOOKING STATUS:<%= booking.status %></p>
           </div>
-          <h2 class="card-product-pricing">£99.99</h2>
+          <h2 class="card-product-pricing"><%= humanized_money_with_symbol(booking.product.price) %></h2>
           <i class="far fa-heart card-product-save"></i>
         </div>
       <% end %>
