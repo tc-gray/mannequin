@@ -32,6 +32,7 @@ import { initStarRating } from '../plugins/init_star_rating';
 import { initChatroomCable } from '../channels/chatroom_channel';
 import { slideOnScroll } from '../plugins/scroll_slide';
 import { initSweetalert } from '../plugins/init_sweetalert';
+import { initMapbox } from '../plugins/init_mapbox';
 // import { scrollListner } from '../plugins/fixed_nav';
 
 document.addEventListener('turbolinks:load', () => {
@@ -52,4 +53,5 @@ document.addEventListener('turbolinks:load', () => {
       link.click();
     }
   });
+  initMapbox();
 });

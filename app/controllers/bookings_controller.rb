@@ -2,6 +2,15 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @product = Product.find(params[:product_id])
+    # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
+    @deliveries = Delivery.all
+    @markers = @deliveries.geocoded.map do |delivery|
+      {
+        lat: delivery.latitude,
+        lng: delivery.longitude,
+        info_window: render_to_string(partial: "deliveries/info_window", locals: { delivery: delivery })
+      }
+    end
   end
 
   def create

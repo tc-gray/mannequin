@@ -4,6 +4,7 @@
       <h1>MAKE A NEW BOOKING</h1>
       <%= render 'shared/new_booking' %>
     </div>
+
     <div class="col-md-5 col-sm-12">
       <%= link_to product_path(@product) do %>
       <div class="card-product rounded mt-3">
@@ -22,6 +23,15 @@
         </div>
       </div>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div id="map" style="width: 100%; height: 600px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
     </div>
   </div>
 </div>

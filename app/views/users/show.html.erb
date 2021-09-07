@@ -41,6 +41,7 @@
               <h2 class=""><%= booking.product.name.upcase %></h2>
               <p><%= booking.product.category.upcase %></p>
               <p>BOOKING STATUS:<%= booking.status %></p>
+              <p>From <%= booking.start_date %> TO <%= booking.end_date %> </p>
               <h2 class="card-product-pricing"><%= humanized_money_with_symbol(booking.product.price) %></h2>
             </div>
             <i class="far fa-heart card-product-save"></i>
