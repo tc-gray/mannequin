@@ -1,13 +1,13 @@
-<div class="container text-center mt-3">
-      <h1>Products</h1>
-</div>
+<%# <div class="container text-center mt-3">
+      <h1>All Clothing</h1>
+</div> %>
 
 <div class="container text-right mt-3">
   <%# PLACEHOLDER ** TBD ** %>
   <p>sort by</p>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid pb-5">
   <div class="row">
     <div class="col-lg-3">
       <div class="filter-bar px-4 py-5 mt-3">
@@ -30,12 +30,14 @@
                 <div class="card-product rounded mt-3">
                   <%# add cloudinary 1st image %>
                   <div class="img-wrapper">
-                    <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
-                    <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+                    <% if product.photos.attached? %>
+                      <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                    <% else %>
+                      <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" />
+                    <% end %>
                   </div>
                   <div class="card-product-infos">
                     <div>
-                      <h2 class=""><%= product.name.upcase %></h2>
                       <p><%= product.category.upcase %></p>
                     </div>
                     <h2 class="card-product-pricing"><p><%= humanized_money_with_symbol(product.price) %></p></h2>

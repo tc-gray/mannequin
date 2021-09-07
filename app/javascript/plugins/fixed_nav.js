@@ -1,7 +1,7 @@
 
 const fixNavOnScroll = () => {
   const navbar = document.getElementById("navbar");
-  const content = document.getElementById("content-inside");
+  const content = document.getElementById("content");
   const sticky = navbar.offsetTop;
 
   if (window.pageYOffset > sticky) {

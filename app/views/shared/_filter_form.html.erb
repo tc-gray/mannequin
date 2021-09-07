@@ -1,6 +1,6 @@
 <%= form_tag products_path, method: :get, class: 'filter-form' do %>
   <% i = 1 %>
-  <% ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes'].each do |category| %>
+  <% ['dress', 'trouser', 'top', 'shoes', 'sweater'].each do |category| %>
     <%= check_box_tag "category", category, false, class: 'classic-checkbox', :id => "category#{i}" %>
     <%= label_tag("category#{i}", category.upcase) %>
     <% i += 1 %>
