@@ -2,12 +2,11 @@
       <h1>All Clothing</h1>
 </div> %>
 
-<div class="container text-right mt-3">
-  <%# PLACEHOLDER ** TBD ** %>
+<div class="container text-right mt-5">
   <p>sort by</p>
 </div>
 
-<div class="container-fluid container-fluid-index pb-5">
+<div class="container-fluid container-fluid-index py-5">
   <div class="row">
     <div class="col-lg-3">
       <div class="filter-bar px-4 py-5 mt-3">
@@ -27,8 +26,7 @@
           <% @products.each do |product| %>
             <div class="col-lg-4 grow col-md-6">
               <%= link_to product_path(product) do %>
-                <div class="card-product rounded mt-3">
-                  <%# add cloudinary 1st image %>
+                <div class="card-product rounded mt-3" data-aos="zoom-out">
                   <div class="img-wrapper">
                     <% if product.photos.attached? %>
                       <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
@@ -40,7 +38,7 @@
                     <div>
                       <p><%= product.category.upcase %></p>
                     </div>
-                    <h2 class="card-product-pricing"><p><%= humanized_money_with_symbol(product.price) %></p></h2>
+                    <h6 class="card-product-pricing"><%= humanized_money_with_symbol(product.price) %></h6>
                     <i class="far fa-heart card-product-save"></i>
                   </div>
                 </div>

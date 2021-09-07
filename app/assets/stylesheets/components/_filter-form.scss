@@ -1,11 +1,7 @@
 .filter-bar {
   position: sticky;
-  top: 0;
+  top: 80px;
   background-color: $light-pink;
-}
-
-.filter-form {
-  // text-align: center;
 }
 
 .checkbox-div {
@@ -17,13 +13,6 @@
   transform: scale(0);
 }
 
-// .classic-checkbox, label {
-//   cursor: pointer;
-//   background-color: rgba(0,0,0,0.1);
-//   color: #333333;
-//   padding: 2px 6px 2px 6px;
-//   border: 1px solid black;
-// }
 
 .classic-checkbox + label {
   cursor: pointer;

@@ -70,7 +70,6 @@ sizes_array = ['6', '8', '10', '12', '14', '16', '18']
 
 
 15.times do
-
   search_term = search_term_array.sample
   color = color_array.sample
 

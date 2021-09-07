@@ -23,7 +23,7 @@
             <% @product.photos.each_with_index do |photo, index| %>
             <% if index == 0 %>
             <div class="carousel-item active carousel-img">
-              <%= cl_image_tag photo.key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img"%>
+              <%= cl_image_tag photo.key, :height=>720, :crop=>"scale", style: 'width: 100%;', class: "product-img"%>
             </div>
             <% else %>
             <div class="carousel-item carousel-img">
@@ -45,9 +45,13 @@
       </div>
       <div class="col-sm-12 col-md-4 details-container">
         <div class="product-details-container">
-          <h2><%= @product.name %></h2>
+          <h2> <%= humanized_money_with_symbol(@product.price) %></h2>
           <div class="product-details">
-            <img class="card-trip-user avatar-bordered" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
+            <% if @product.user.photo.attached? %>
+              <%= cl_image_tag @product.user.photo.key, height: 200, width: 200, crop: :fill, class: 'card-trip-user avatar-bordered' %>
+            <% else %>
+              <img src="https://source.unsplash.com/NE0XGVKTmcA/200x200" class="card-trip-user avatar-bordered" />
+            <% end %>
             <p><%= link_to @product.user.username, user_profile_path(@product.user) %></p>
           </div>
           <hr class="horizontal-rule">
@@ -73,7 +77,7 @@
   </div>
 </div>
 
-<div class="more-from-this-user">
+<div class="more-from-this-user mt-5">
   <h2>More from this user</h2>
 </div>
 
@@ -85,7 +89,7 @@
   </div>
 </div>
 
-<div class="container reviews-container">
+<div class="container reviews-container mt-5">
   <div class="row reviews-container-row">
     <div class="col-sm-12 col-md-6">
       <h2 class="add-review-text">Add a new product review</h2>
@@ -109,6 +113,7 @@
 
     <div class="col-sm-12 col-md-6">
       <h2 class="see-reviews-text">See this product's latest reviews</h2>
+      <br>
       <% if @product.product_reviews.empty? %>
         <small><em>Be the first one to review this product!</em></small>
       <% else %>
