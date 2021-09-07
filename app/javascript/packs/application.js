@@ -29,8 +29,9 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initStarRating } from '../plugins/init_star_rating';
-import { initChatroomCable } from '..channels/chatroom_channel';
+import { initChatroomCable } from '../channels/chatroom_channel';
 import { slideOnScroll } from '../plugins/scroll_slide';
+import { initSweetalert } from '../plugins/init_sweetalert';
 // import { scrollListner } from '../plugins/fixed_nav';
 
 document.addEventListener('turbolinks:load', () => {
@@ -41,4 +42,9 @@ document.addEventListener('turbolinks:load', () => {
   // scrollListner();
   initChatroomCable();
   slideOnScroll();
+  initSweetalert('#sweet-alert-demo', {
+    title: "A nice alert",
+    text: "This is a great alert, isn't it?",
+    icon: "success"
+  });
 });
