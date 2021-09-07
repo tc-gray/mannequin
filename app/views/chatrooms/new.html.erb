@@ -5,7 +5,7 @@
       <h3>What's the topic about?</h3>
       <%= simple_form_for [@product, @chatroom], remote: true do |f| %>
         <%= f.input :name %>
-        <%= f.submit "Save room", class: "btn btn-primary" %>
+        <%= f.submit "Start a chat", class: "btn btn-primary" %>
       <% end %>
     </div>
     <div class="col-sm-12 col-md-6">

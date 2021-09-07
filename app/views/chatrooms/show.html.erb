@@ -6,11 +6,15 @@
     </div>
     <div class="col-sm-12 col-md-8">
       <div class="chatroom-details">
-        <h1><%= @chatroom.product.name %></h1>
+        <h1><%= link_to @chatroom.product.name, product_path(@chatroom.product) %></h1>
         <button class="btn btn-ghost-3" id="sweet-alert-demo">End chat</button>
         <%= link_to "", chatroom_path(@chatroom), method: :delete, id: "delete-link", class: "hidden"%>
       </div>
+      <hr>
       <h3>Topic: <%= @chatroom.name %></h3>
+      <hr>
+      <h6><%= @chatroom.user.username %> | <%= @chatroom.product.user.username %></h6>
+      <hr>
       <div id="messages" class="chat-bubble chat-bubble--right" data-chatroom-id="<%= @chatroom.id %>">
         <% @chatroom.messages.each do |message| %>
           <div class="message-container" id="message-<%= message.id %>">
