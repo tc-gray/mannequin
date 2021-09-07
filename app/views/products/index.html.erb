@@ -1,17 +1,19 @@
-<div class="container text-center mt-3 index-title">
-      <h1>All Products</h1>
-</div>
+<%# <div class="container text-center mt-3 index-title">
+      <h1>All Clothing</h1>
+</div> %>
 
-<div class="container text-right mt-3">
-  <%# PLACEHOLDER ** TBD ** %>
+<div class="container text-right mt-5">
   <p>sort by</p>
 </div>
 
-<div class="container-fluid container-fluid-index">
+<div class="container-fluid container-fluid-index py-5">
   <div class="row">
     <div class="col-lg-3">
-      <div class="filter-bar bg-info p-5 mt-3">
+      <div class="filter-bar px-4 py-5 mt-3">
+        <h4>Category</h4>
+        <hr>
         <%= render 'shared/filter_form' %>
+        <hr>
       </div>
     </div>
     <div class="col-lg-9">
@@ -24,18 +26,19 @@
           <% @products.each do |product| %>
             <div class="col-lg-4 grow col-md-6">
               <%= link_to product_path(product) do %>
-                <div class="card-product rounded mt-3">
-                  <%# add cloudinary 1st image %>
+                <div class="card-product rounded mt-3" data-aos="zoom-out">
                   <div class="img-wrapper">
-                    <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
-                    <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+                    <% if product.photos.attached? %>
+                      <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                    <% else %>
+                      <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" />
+                    <% end %>
                   </div>
                   <div class="card-product-infos">
                     <div>
-                      <h2 class=""><%= product.name.upcase %></h2>
                       <p><%= product.category.upcase %></p>
                     </div>
-                    <h2 class="card-product-pricing"><p><%= humanized_money_with_symbol(product.price) %></p></h2>
+                    <h6 class="card-product-pricing"><%= humanized_money_with_symbol(product.price) %></h6>
                     <i class="far fa-heart card-product-save"></i>
                   </div>
                 </div>

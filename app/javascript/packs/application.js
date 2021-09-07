@@ -23,11 +23,13 @@ require("channels")
 // ----------------------------------------------------
 
 // External imports
-import "controllers"
+import "controllers";
 import "bootstrap";
+import 'aos/dist/aos.css';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import AOS from 'aos';
 import { initStarRating } from '../plugins/init_star_rating';
 import { initChatroomCable } from '../channels/chatroom_channel';
 import { slideOnScroll } from '../plugins/scroll_slide';
@@ -36,11 +38,7 @@ import { initMapbox } from '../plugins/init_mapbox';
 // import { scrollListner } from '../plugins/fixed_nav';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
   initStarRating();
-  // fixNavOnScroll();
-  // scrollListner();
   initChatroomCable();
   slideOnScroll();
   initSweetalert('#sweet-alert-demo', {
@@ -54,4 +52,5 @@ document.addEventListener('turbolinks:load', () => {
     }
   });
   initMapbox();
+  AOS.init();
 });
