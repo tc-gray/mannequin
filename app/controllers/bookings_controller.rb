@@ -6,10 +6,11 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    @product = Product.find(params[:product_id])
     @booking.user = current_user
+    @booking.owner = @product.user
     # sets status as pending
     @booking.status = "Pending"
-    @product = Product.find(params[:product_id])
     @booking.product = @product
     if @booking.save
       create_order
