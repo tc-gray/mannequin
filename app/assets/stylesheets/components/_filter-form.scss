@@ -1,0 +1,35 @@
+.filter-bar {
+  position: sticky;
+  top: 80px;
+  background-color: $light-pink;
+}
+
+.checkbox-div {
+  display: inline-block;
+}
+
+.classic-checkbox {
+  position: absolute;
+  transform: scale(0);
+}
+
+
+.classic-checkbox + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 50rem;
+  padding: 0.2rem 0.7rem;
+  background-color: $light-cream;
+  color: $dark-brown;
+  border: 1px solid $brown;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+  // font-weight: bold;
+  font-size: 12px;
+}
+
+.classic-checkbox:checked + label {
+  background-color: $brown;
+  color: white;
+}
