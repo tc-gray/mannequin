@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :user_reviews
   has_many :chatrooms
   has_one_attached :photo
+  has_many :orders
   # validates :username, presence: true, uniqueness: true
   validates :password, presence: true
   # validates :first_name, presence: true
