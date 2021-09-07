@@ -1,0 +1,59 @@
+.btn-ghost {
+  color: rgb(150, 131, 132);
+  border: 1px solid rgb(150, 131, 132);
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: lighter;
+  width: 100%;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: rgb(150, 131, 132);
+  color: white;
+}
+
+.btn-ghost-2 {
+  color: rgb(150, 131, 132);
+  border: 1px solid rgb(150, 131, 132);
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: lighter;
+  width: 20%;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+  margin: 5px 5px;
+}
+
+.btn-ghost-2:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: rgb(150, 131, 132);
+  color: white;
+}
+
+.btn-ghost-3 {
+  color: rgb(150, 131, 132);
+  background-color: rgb(150, 131, 132);
+  border: 1px solid rgb(150, 131, 132);
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: lighter;
+  width: 20%;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.btn-ghost-3:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: white;
+  color: black;
+}

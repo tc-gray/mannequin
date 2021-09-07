@@ -23,20 +23,32 @@ require("channels")
 // ----------------------------------------------------
 
 // External imports
-import "controllers"
+import "controllers";
 import "bootstrap";
+import 'aos/dist/aos.css';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import AOS from 'aos';
 import { initStarRating } from '../plugins/init_star_rating';
+import { initChatroomCable } from '../channels/chatroom_channel';
 import { slideOnScroll } from '../plugins/scroll_slide';
-// import { scrollListner } from '../plugins/fixed_nav';
+import { initSweetalert } from '../plugins/init_sweetalert';
+
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
   initStarRating();
-  // fixNavOnScroll();
-  // scrollListner();
+  initChatroomCable();
   slideOnScroll();
+  initSweetalert('#sweet-alert-demo', {
+    title: "Are you sure?",
+    text: "This action cannot be reversed",
+    icon: "warning"
+  }, (value) => {
+    if (value) {
+      const link = document.querySelector('#delete-link');
+      link.click();
+    }
+  });
+  AOS.init();
 });

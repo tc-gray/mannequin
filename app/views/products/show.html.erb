@@ -23,7 +23,7 @@
             <% @product.photos.each_with_index do |photo, index| %>
             <% if index == 0 %>
             <div class="carousel-item active carousel-img">
-              <%= cl_image_tag photo.key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img"%>
+              <%= cl_image_tag photo.key, :height=>720, :crop=>"scale", style: 'width: 100%;', class: "product-img"%>
             </div>
             <% else %>
             <div class="carousel-item carousel-img">
@@ -45,10 +45,14 @@
       </div>
       <div class="col-sm-12 col-md-4 details-container">
         <div class="product-details-container">
-          <h2><%= @product.name %></h2>
+          <h2> <%= humanized_money_with_symbol(@product.price) %></h2>
           <div class="product-details">
-            <img class="card-trip-user avatar-bordered" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
-            <p><%= link_to @product.user.email, user_profile_path(@product.user) %></p>
+            <% if @product.user.photo.attached? %>
+              <%= cl_image_tag @product.user.photo.key, height: 200, width: 200, crop: :fill, class: 'card-trip-user avatar-bordered' %>
+            <% else %>
+              <img src="https://source.unsplash.com/NE0XGVKTmcA/200x200" class="card-trip-user avatar-bordered" />
+            <% end %>
+            <p><%= link_to @product.user.username, user_profile_path(@product.user) %></p>
           </div>
           <hr class="horizontal-rule">
           <p><%= @product.description %></p>
@@ -57,7 +61,7 @@
           <p>SIZE: <%= @product.size %></p>
           <p>PRICE: <%= humanized_money_with_symbol(@product.price) %></p>
           <div class="btn-container">
-            <%= link_to "Ask the seller", "#", class: "btn btn-ghost", id: "btn-ghost" %>
+            <%= link_to "Ask the seller", new_product_chatroom_path(@product), class: "btn btn-ghost", id: "btn-ghost" %>
             <%= link_to "♡ Add to favourites", "#", class: "btn btn-ghost", id: "btn-ghost" %>
             <% if user_signed_in? %>
               <% if @product.user != current_user %>
@@ -73,19 +77,29 @@
   </div>
 </div>
 
-<div class="more-from-this-user">
+<div class="more-from-this-user mt-5">
   <h2>More from this user</h2>
 </div>
 
 <div class="other-products">
   <div class="row carousel-row">
     <div class="col-sm-12 col-md-10">
-      <%= render 'shared/carousel' %>
+      <% if @product.user.products.length < 2 %>
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+            <div class="col-sm-12 col-md-6">
+              <p>This user has no additional products to show</p>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <%= render 'shared/carousel' %>
+      <% end %>
     </div>
   </div>
 </div>
 
-<div class="container reviews-container">
+<div class="container reviews-container mt-5">
   <div class="row reviews-container-row">
     <div class="col-sm-12 col-md-6">
       <h2 class="add-review-text">Add a new product review</h2>
@@ -109,6 +123,7 @@
 
     <div class="col-sm-12 col-md-6">
       <h2 class="see-reviews-text">See this product's latest reviews</h2>
+      <br>
       <% if @product.product_reviews.empty? %>
         <small><em>Be the first one to review this product!</em></small>
       <% else %>

@@ -116,7 +116,7 @@ a:hover {
 }
 
 .slide-right h2 {
-  animation: 1s slide-right 0.5s forwards;
+  animation: 0.5s slide-right 0.5s forwards;
   transform: translateX(-100%);
 }
 
@@ -137,6 +137,9 @@ a:hover {
 .slide-left {
   width: 100%;
   overflow: hidden;
+  // these are additions after the js stopped working
+  // animation: 0.5s slide-left 0.5s forwards;
+  // transform: translateX(-120%);
 }
 
 @keyframes slide-left {
@@ -152,7 +155,7 @@ a:hover {
   position: relative;
 }
 
-/*animation element sliding from right*/
+/*animation element sliding from left*/
 
 .animation-element.slide-left {
   opacity: 0;
