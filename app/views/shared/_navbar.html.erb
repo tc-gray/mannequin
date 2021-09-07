@@ -12,6 +12,9 @@
       <%= link_to 'Profile', user_path, class: 'nav-link' %>
     </li>
     <li class="nav-item">
+      <%= link_to 'Chats', chats_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="#">Community</a>
       <%# <%= link_to 'Community', ##, class: 'nav-link' %>
     </li>
@@ -31,7 +34,7 @@
             <%= link_to 'My Profile', user_path, class: 'dropdown-item' %>
             <%= link_to 'Add a Listing', new_product_path, class: 'dropdown-item' %>
             <div class="dropdown-divider"></div>
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, remote: false, class: 'dropdown-item' %>
           </div>
         </li>
       <% else %>
@@ -82,7 +85,7 @@
       </li>
       <li class="nav-item">
         <% if user_signed_in? %>
-          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, remote:false, class: 'nav-link' %>
         <% else %>
           <%= link_to 'Sign in/Register', new_user_session_path, class: 'nav-link' %>
         <% end %>

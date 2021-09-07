@@ -1,0 +1,14 @@
+<div class="mb-3">
+</div>
+
+<% if @chatrooms.present? %>
+  <nav class="nav flex-column">
+    <% @chatrooms.each do |room| %>
+      <%= link_to room.name, chatroom_path(room), class: 'nav-link room-nav-link' %>
+    <% end %>
+  </nav>
+<% else %>
+  <div class="text-muted">
+    The are no rooms
+  </div>
+<% end %>
