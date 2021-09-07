@@ -43,8 +43,13 @@ document.addEventListener('turbolinks:load', () => {
   initChatroomCable();
   slideOnScroll();
   initSweetalert('#sweet-alert-demo', {
-    title: "A nice alert",
-    text: "This is a great alert, isn't it?",
-    icon: "success"
+    title: "Are you sure?",
+    text: "This action cannot be reversed",
+    icon: "warning"
+  }, (value) => {
+    if (value) {
+      const link = document.querySelector('#delete-link');
+      link.click();
+    }
   });
 });
