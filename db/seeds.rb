@@ -57,7 +57,7 @@ W1T 1BJ
 
 location_5 = Delivery.create(address: "101 Waterloo Road
 London
-SE1 8UL", name: )
+SE1 8UL", name: "Sainsbury's Waterloo Road")
 
 # SIZES = ['6', '8', '10', '12', '14', '16', '18']
 # CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
