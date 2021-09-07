@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # to access the chatrooms from outside the products routes
   # we can unnest the chatrooms show and the messages create from the products
   # and just put it outside the loop
-  resources :chatrooms, only: :show do
+  resources :chatrooms, only: [:show, :destroy] do
     resources :messages, only: :create
   end
 end

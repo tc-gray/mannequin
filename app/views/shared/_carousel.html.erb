@@ -5,171 +5,31 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="cards-wrapper">
-        <%= link_to product_path(@product) do %>
-        <div class="card-product carousel-card rounded mt-3">
-          <%# add cloudinary 1st image %>
-          <div class="img-wrapper">
-            <%= cl_image_tag @product.photos[0].key, height: 300, width: 200, crop: :fill %>
-            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-          </div>
-          <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= @product.name.upcase %></h2>
-              <p><%= @product.category.upcase %></p>
-            </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
-            <i class="far fa-heart card-product-save"></i>
-          </div>
+    <% @user_products.each_slice(3).with_index do |slice, index|  %>
+      <div class="carousel-item <%= 'active' if index == 0 %> ">
+        <div class="cards-wrapper">
+          <% slice.each do |product| %>
+            <%= link_to product_path(product) do %>
+              <div class="card-product carousel-card rounded mt-3">
+                <%# add cloudinary 1st image %>
+                <div class="img-wrapper">
+                  <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                  <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+                </div>
+                <div class="card-product-infos">
+                  <div>
+                    <h2 class=""><%= product.name.upcase %></h2>
+                    <p><%= product.category.upcase %></p>
+                  </div>
+                  <h2 class="card-product-pricing"><%= humanized_money_with_symbol(product.price) %></h2>
+                  <i class="far fa-heart card-product-save"></i>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
         </div>
-        <% end %>
-        <%= link_to product_path(@product) do %>
-        <div class="card-product carousel-card rounded mt-3">
-          <%# add cloudinary 1st image %>
-          <div class="img-wrapper">
-            <%= cl_image_tag @product.photos[0].key, height: 300, width: 200, crop: :fill %>
-            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-          </div>
-          <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= @product.name.upcase %></h2>
-              <p><%= @product.category.upcase %></p>
-            </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
-            <i class="far fa-heart card-product-save"></i>
-          </div>
-        </div>
-        <% end %>
-        <%= link_to product_path(@product) do %>
-        <div class="card-product carousel-card rounded mt-3">
-          <%# add cloudinary 1st image %>
-          <div class="img-wrapper">
-            <%= cl_image_tag @product.photos[0].key, height: 300, width: 200, crop: :fill %>
-            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-          </div>
-          <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= @product.name.upcase %></h2>
-              <p><%= @product.category.upcase %></p>
-            </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
-            <i class="far fa-heart card-product-save"></i>
-          </div>
-        </div>
-        <% end %>
       </div>
-    </div>
-    <div class="carousel-item">
-      <div class="cards-wrapper">
-        <%= link_to product_path(@product) do %>
-        <div class="card-product carousel-card rounded mt-3">
-          <%# add cloudinary 1st image %>
-          <div class="img-wrapper">
-            <%= cl_image_tag @product.photos[0].key, height: 300, width: 200, crop: :fill %>
-            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-          </div>
-          <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= @product.name.upcase %></h2>
-              <p><%= @product.category.upcase %></p>
-            </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
-            <i class="far fa-heart card-product-save"></i>
-          </div>
-        </div>
-        <% end %>
-        <%= link_to product_path(@product) do %>
-        <div class="card-product carousel-card rounded mt-3">
-          <%# add cloudinary 1st image %>
-          <div class="img-wrapper">
-            <%= cl_image_tag @product.photos[0].key, height: 300, width: 200, crop: :fill %>
-            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-          </div>
-          <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= @product.name.upcase %></h2>
-              <p><%= @product.category.upcase %></p>
-            </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
-            <i class="far fa-heart card-product-save"></i>
-          </div>
-        </div>
-        <% end %>
-        <%= link_to product_path(@product) do %>
-        <div class="card-product carousel-card rounded mt-3">
-          <%# add cloudinary 1st image %>
-          <div class="img-wrapper">
-            <%= cl_image_tag @product.photos[0].key, height: 300, width: 200, crop: :fill %>
-            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-          </div>
-          <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= @product.name.upcase %></h2>
-              <p><%= @product.category.upcase %></p>
-            </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
-            <i class="far fa-heart card-product-save"></i>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="cards-wrapper">
-        <%= link_to product_path(@product) do %>
-        <div class="card-product carousel-card rounded mt-3">
-          <%# add cloudinary 1st image %>
-          <div class="img-wrapper">
-            <%= cl_image_tag @product.photos[0].key, height: 300, width: 200, crop: :fill %>
-            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-          </div>
-          <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= @product.name.upcase %></h2>
-              <p><%= @product.category.upcase %></p>
-            </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
-            <i class="far fa-heart card-product-save"></i>
-          </div>
-        </div>
-        <% end %>
-        <%= link_to product_path(@product) do %>
-        <div class="card-product carousel-card rounded mt-3">
-          <%# add cloudinary 1st image %>
-          <div class="img-wrapper">
-            <%= cl_image_tag @product.photos[0].key, height: 300, width: 200, crop: :fill %>
-            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-          </div>
-          <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= @product.name.upcase %></h2>
-              <p><%= @product.category.upcase %></p>
-            </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
-            <i class="far fa-heart card-product-save"></i>
-          </div>
-        </div>
-        <% end %>
-        <%= link_to product_path(@product) do %>
-        <div class="card-product carousel-card rounded mt-3">
-          <%# add cloudinary 1st image %>
-          <div class="img-wrapper">
-            <%= cl_image_tag @product.photos[0].key, height: 300, width: 200, crop: :fill %>
-            <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-          </div>
-          <div class="card-product-infos">
-            <div>
-              <h2 class=""><%= @product.name.upcase %></h2>
-              <p><%= @product.category.upcase %></p>
-            </div>
-            <h2 class="card-product-pricing"><%= humanized_money_with_symbol(@product.price) %></h2>
-            <i class="far fa-heart card-product-save"></i>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
+    <% end %>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

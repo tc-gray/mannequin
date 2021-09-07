@@ -56,6 +56,11 @@ class ChatroomsController < ApplicationController
     end
   end
 
+  def destroy
+    @chatroom.destroy
+    redirect_to chats_path
+  end
+
   private
 
   def load_chatrooms
