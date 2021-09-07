@@ -2,7 +2,13 @@ class ChatroomsController < ApplicationController
   before_action :load_chatrooms
 
   def index
-    @chatrooms = Chatroom.where(user: current_user)
+    # @chatrooms = Chatroom.where(user: current_user)
+    # if the product of the chatroom is included in the product of the user
+    # so select chatrooms if the chatroom.user is the current user or their products are
+    # included in the products of the chatroom
+    @chatrooms = Chatroom.all.select do |chatroom|
+      chatroom.user == current_user || current_user.products.include?(chatroom.product)
+    end
   end
 
   def show
