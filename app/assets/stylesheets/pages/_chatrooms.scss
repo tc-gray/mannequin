@@ -12,7 +12,18 @@
   margin: 40px auto;
 }
 
+// Chatroom new page styling
+
+.chatroom-new-container {
+  margin: 20px auto;
+}
+
 // Chatroom Show Page Styling
+
+.chatroom-details {
+  display: flex;
+  justify-content: space-between;
+}
 
 .chatroom-show-container {
   margin: 40px auto;

@@ -8,9 +8,11 @@ class ProductsController < ApplicationController
     elsif params[:category].present?
       if session[:search_query]
         @search = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
-        @products = @search.search_by_name_and_description_and_size_and_category(params[:category])
+        @products = @search.where("category ILIKE ?", "%#{params[:category]}%")
       else
-        @products = Product.search_by_name_and_description_and_size_and_category(params[:category])
+        # @products = Product.search_by_name_and_description_and_size_and_category(params[:category])
+        @products = Product.where("category ILIKE ?", "%#{params[:category]}%")
+        session.delete("search_query")
       end
     else
       @products = Product.all
@@ -20,6 +22,7 @@ class ProductsController < ApplicationController
   def show
     @products = Product.all
     @product_review = ProductReview.new(product: @product)
+    @user_products = @product.user.products.where.not(id: @product.id)
   end
 
   def new

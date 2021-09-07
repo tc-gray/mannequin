@@ -4,7 +4,7 @@
 <% if @chatrooms.present? %>
   <nav class="nav flex-column">
     <% @chatrooms.each do |room| %>
-      <%= link_to room.name, chatroom_path(room), class: 'nav-link room-nav-link' %>
+      <%= link_to room.product.name, chatroom_path(room), class: 'nav-link room-nav-link' %>
     <% end %>
   </nav>
 <% else %>
