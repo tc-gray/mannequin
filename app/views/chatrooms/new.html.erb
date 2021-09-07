@@ -1,0 +1,12 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <h1>Create a new chatroom</h1>
+      <%= simple_form_for [@product, @chatroom], remote: true do |f| %>
+        <%= f.input :name %>
+        <%= f.submit "Save room", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
