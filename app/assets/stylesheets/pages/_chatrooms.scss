@@ -14,6 +14,11 @@
 
 // Chatroom Show Page Styling
 
+.chatroom-details {
+  display: flex;
+  justify-content: space-between;
+}
+
 .chatroom-show-container {
   margin: 40px auto;
 }

@@ -1,5 +1,5 @@
 class Chatroom < ApplicationRecord
-  has_many :messages
+  has_many :messages, dependent: :destroy
   # in order for the chatroom to be a 1:1 relationship, we need
   # the chatroom to belong to a product and a user
   # so we first made a migration to add a foreign key to the user and the product

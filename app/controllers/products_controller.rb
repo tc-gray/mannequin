@@ -20,6 +20,7 @@ class ProductsController < ApplicationController
   def show
     @products = Product.all
     @product_review = ProductReview.new(product: @product)
+    @user_products = @product.user.products.where.not(id: @product.id)
   end
 
   def new
