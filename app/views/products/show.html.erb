@@ -52,7 +52,11 @@
             <% else %>
               <img src="https://source.unsplash.com/NE0XGVKTmcA/200x200" class="card-trip-user avatar-bordered" />
             <% end %>
-            <p><%= link_to @product.user.username, user_profile_path(@product.user) %></p>
+            <% if @product.user == current_user %>
+              <p><%= link_to @product.user.username, user_path %></p>
+            <% else %>
+              <p><%= link_to @product.user.username, user_profile_path(@product.user) %></p>
+            <% end %>
           </div>
           <hr class="horizontal-rule">
           <p><%= @product.description %></p>
