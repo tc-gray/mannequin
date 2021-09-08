@@ -2,55 +2,19 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    # products = Product.all
-
-
-
 
     if params[:query].present?
-      @products = Product.search_by_name_and_description_and_size_and_category(params[:query])
-      session[:search_query] = params[:query]
+      filter_query_results(params[:query])
     elsif params[:category].present?
-      if session[:search_query]
-        @search = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
-        products = @search.where("category ILIKE ?", "%#{params[:category]}%")
-        if params["sort-by"].present?
-          if params["sort-by"] == "accending"
-            @products = products.sort_by(&:price_cents)
-          else
-            @products = products.sort_by(&:price_cents).reverse
-          end
-        else
-          @products = @search.where("category ILIKE ?", "%#{params[:category]}%")
-        end
-      else
-        products = Product.where("category ILIKE ?", "%#{params[:category]}%")
-        session.delete("search_query")
-        if params["sort-by"].present?
-          if params["sort-by"] == "accending"
-            @products = products.sort_by(&:price_cents)
-          else
-            @products = products.sort_by(&:price_cents).reverse
-          end
-        else
-          @products = Product.where("category ILIKE ?", "%#{params[:category]}%")
-        end
-      end
+      filter_category_results(params[:category])
+    elsif params["sort-by"].present?
+      filter_sort_results(params["sort-by"])
     else
-      products = Product.all
-      if params["sort-by"].present?
-        if params["sort-by"] == "accending"
-          @products = products.sort_by(&:price_cents)
-        else
-          @products = products.sort_by(&:price_cents).reverse
-        end
-      else
-        @products = Product.all
-      end
+      @products = Product.all
+      delete_sessions
     end
-
-
   end
+
 
   def show
     @products = Product.all
@@ -97,5 +61,70 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :description, :category, :size, photos: [])
+  end
+
+  def filter_query_results(params)
+    session[:search_query] = params
+    if session[:search_category] && session[:search_sort]
+      search = Product.where("category ILIKE ?", "%#{session[:search_category]}%")
+      array = search.search_by_name_and_description_and_size_and_category(params)
+      @products = sort(array, session[:search_sort])
+    elsif session[:search_category]
+      search = Product.where("category ILIKE ?", "%#{session[:search_category]}%")
+      @products = search.search_by_name_and_description_and_size_and_category(params)
+    elsif session[:search_sort]
+      array = Product.search_by_name_and_description_and_size_and_category(params)
+      @products = sort(array, session[:search_sort])
+    else
+      @products = Product.search_by_name_and_description_and_size_and_category(params)
+    end
+  end
+
+  def filter_category_results(params)
+    session[:search_category] = params
+    if session[:search_query] && session[:search_sort]
+      search = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
+      array = search.where("category ILIKE ?", "%#{params}%")
+      @products = sort(array, session[:search_sort])
+    elsif session[:search_query]
+      search = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
+      @products = search.where("category ILIKE ?", "%#{params}%")
+    elsif session[:search_sort]
+      array = Product.where("category ILIKE ?", "%#{params}%")
+      @products = sort(array, session[:search_sort])
+    else
+      @products = Product.where("category ILIKE ?", "%#{params}%")
+    end
+  end
+
+  def filter_sort_results(params)
+    session[:search_sort] = params
+    if session[:search_query] && session[:search_category]
+      search = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
+      array = search.where("category ILIKE ?", "%#{session[:search_category]}%")
+      @products = sort(array, params)
+    elsif session[:search_query]
+      array = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
+      @products = sort(array, params)
+    elsif session[:search_category]
+      array = search.where("category ILIKE ?", "%#{session[:search_category]}%")
+      @products = sort(array, params)
+    else
+      @products = sort(Product.all, params)
+    end
+  end
+
+  def sort(array, sort_by)
+    if sort_by == "accending"
+      array.sort_by(&:price_cents)
+    else
+      array.sort_by(&:price_cents).reverse
+    end
+  end
+
+  def delete_sessions
+    session.delete("search_query")
+    session.delete("search_sort")
+    session.delete("search_category")
   end
 end
