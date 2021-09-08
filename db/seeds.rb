@@ -39,7 +39,7 @@ puts "Database cleaned"
 
 puts "Users created"
 
-location_1 = Delivery.create(address: "36-37 Strand
+location_1 = Delivery.create!(address: "36-37 Strand
 London
 WC2N 5HY", name: "Sainsbury's Strand")
 
@@ -105,7 +105,7 @@ location_15 = Delivery.create(address: "146 High Street
 Barnet
 EN5 5XP", name: "Sainsbury's Barnet High Street")
 
-puts "Delivery locations created"
+puts "#{Delivery.count} Delivery locations created"
 
 # SIZES = ['6', '8', '10', '12', '14', '16', '18']
 # CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
