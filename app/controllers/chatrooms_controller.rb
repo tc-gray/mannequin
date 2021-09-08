@@ -16,7 +16,9 @@ class ChatroomsController < ApplicationController
     redirect_to chats_path if current_user != @chatroom.product.user && current_user != @chatroom.user
 
     @message = Message.new
-    @chatrooms = Chatroom.all # NOTE(Eschults): for side navigation
+    @chatrooms = Chatroom.all.select do |chatroom|
+      chatroom.user == current_user || current_user.products.include?(chatroom.product)
+    end
   end
 
   def new

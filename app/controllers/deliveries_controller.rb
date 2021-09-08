@@ -13,37 +13,36 @@ class DeliveriesController < ApplicationController
 
   def new
     @deliveries = Delivery.all
+    @product = Product.find(params[:product_id])
+    @booking = Booking.find(params[:booking_id])
+    @delivery = Delivery.new
     @markers = @deliveries.geocoded.map do |delivery|
       {
         lat: delivery.latitude,
         lng: delivery.longitude,
-        info_window: render_to_string(partial: "deliveries/info_window", locals: { delivery: delivery })
+        info_window: render_to_string(partial: "deliveries/info_window", locals: { delivery: delivery, product: @product, booking: @booking })
       }
     end
-    @product = Product.find(params[:product_id])
-    @booking = Booking.find(params[:booking_id])
-    @delivery = Delivery.new
   end
 
   def create
     @deliveries = Delivery.all
-    @markers = @deliveries.geocoded.map do |delivery|
-      {
-        lat: delivery.latitude,
-        lng: delivery.longitude,
-        info_window: render_to_string(partial: "deliveries/info_window", locals: { delivery: delivery })
-      }
-    end
     @product = Product.find(params[:product_id])
     @booking = Booking.find(params[:booking_id])
-    @delivery = Delivery.new(delivery_params)
-    @product = Product.find(params[:product_id])
-    @booking = Booking.find(params[:booking_id])
+    @delivery = Delivery.new
+    @delivery.booking = @booking
     @booking.user = current_user
     @booking.owner = @product.user
     if @delivery.save
       redirect_to user_path(current_user)
     else
+      @markers = @deliveries.geocoded.map do |delivery|
+        {
+          lat: delivery.latitude,
+          lng: delivery.longitude,
+          info_window: render_to_string(partial: "deliveries/info_window", locals: { delivery: delivery, product: @product, booking: @booking })
+        }
+      end
       render 'deliveries/new'
     end
   end

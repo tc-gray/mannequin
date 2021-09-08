@@ -1,10 +1,5 @@
 <h2><%= delivery.name %></h2>
 <p><%= delivery.address %></p>
-
-<%= simple_form_for [@product, @booking, @delivery] do |f| %>
-  <%= f.submit "Select", class: "btn btn-primary" %>
-<% end %>
-
-<%= form_tag product_booking_deliveries_path, method: :post do %>
+<%= form_tag product_booking_deliveries_path(product, booking), method: :post do %>
   <%= submit_tag "Select", class: "btn btn-primary" %>
 <% end %>
