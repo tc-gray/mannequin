@@ -39,7 +39,7 @@ puts "Database cleaned"
 
 puts "Users created"
 
-location_1 = Delivery.create(address: "36-37 Strand
+location_1 = Delivery.create!(address: "36-37 Strand
 London
 WC2N 5HY", name: "Sainsbury's Strand")
 
