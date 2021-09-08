@@ -20,17 +20,17 @@
           </ol>
           <div class="carousel-inner" style=" width:100%; object-fit:cover;">
             <% if @product.photos.attached? %>
-            <% @product.photos.each_with_index do |photo, index| %>
-            <% if index == 0 %>
-            <div class="carousel-item active carousel-img">
-              <%= cl_image_tag photo.key, :height=>720, :crop=>"scale", style: 'width: 100%;', class: "product-img"%>
-            </div>
-            <% else %>
-            <div class="carousel-item carousel-img">
-              <%= cl_image_tag photo.key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img" %>
-            </div>
-            <% end %>
-            <% end %>
+              <% @product.photos.each_with_index do |photo, index| %>
+                <% if index == 0 %>
+                  <div class="carousel-item active carousel-img">
+                    <%= cl_image_tag photo.key, :height=>720, :crop=>"scale", style: 'width: 100%;', class: "product-img"%>
+                  </div>
+                <% else %>
+                  <div class="carousel-item carousel-img">
+                    <%= cl_image_tag photo.key, :height=>720, :crop=>"scale", style: 'width: 100%;', class: "product-img" %>
+                  </div>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators-1" role="button" data-slide="prev">

@@ -44,6 +44,20 @@
   width: 40px;
 }
 
+#currently-rented {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: rosybrown;
+  border-radius: 5px;
+  padding: 10px;
+  opacity: 0.9 !important;
+}
+
 // CSS for cards growing
 
 .grow {

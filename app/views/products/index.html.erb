@@ -34,6 +34,11 @@
                       <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" />
                     <% end %>
                   </div>
+                  <% product.bookings.each do |booking| %>
+                    <% if (booking.start_date .. booking.end_date).cover?(Date.today) %>
+                      <p id="currently-rented">CURRENTLY RENTED</p>
+                    <% end %>
+                  <% end %>
                   <div class="card-product-infos">
                     <div>
                       <p><%= product.category.upcase %></p>
