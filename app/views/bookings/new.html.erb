@@ -25,14 +25,3 @@
     </div>
   </div>
 </div>
-
-<div class="container mapbox-container" id="delivery-select">
-  <div class="row">
-    <div class="col-sm-12 col-md-12">
-      <h1>Delivery locations in the UK</h1>
-      <small>Please select a location for your product to be delivered to:</small>
-      <div id="map" style="width: 100%; height: 550px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-  </div>
-</div>
