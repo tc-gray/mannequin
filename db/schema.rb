@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_110522) do
+ActiveRecord::Schema.define(version: 2021_09_08_115507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 2021_09_07_110522) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.integer "owner_id"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["product_id"], name: "index_bookings_on_product_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -58,6 +61,17 @@ ActiveRecord::Schema.define(version: 2021_09_07_110522) do
     t.bigint "product_id"
     t.index ["product_id"], name: "index_chatrooms_on_product_id"
     t.index ["user_id"], name: "index_chatrooms_on_user_id"
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.bigint "booking_id"
+    t.index ["booking_id"], name: "index_deliveries_on_booking_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -139,6 +153,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_110522) do
   add_foreign_key "bookings", "users"
   add_foreign_key "chatrooms", "products"
   add_foreign_key "chatrooms", "users"
+  add_foreign_key "deliveries", "bookings"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "orders", "bookings"

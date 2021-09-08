@@ -13,6 +13,7 @@ puts "Cleaning database"
 Booking.destroy_all
 User.destroy_all
 Product.destroy_all
+# Delivery.destroy_all
 
 puts "Database cleaned"
 
@@ -38,6 +39,74 @@ attach_photo(user_4)
 
 puts "Users created"
 
+# location_1 = Delivery.create!(address: "36-37 Strand
+# London
+# WC2N 5HY", name: "Sainsbury's Strand")
+
+# location_2 = Delivery.create(address: "10 Rochester Row
+# London
+# SW1P 1BT", name: "Sainsbury's Rochester Row")
+
+# location_3 = Delivery.create(address: "1 Berners Street
+# London
+# W1T 3LA", name: "Sainsbury's Berners Street")
+
+# location_4 = Delivery.create(address: "15-17 Tottenham Court Road
+# London
+# W1T 1BJ
+# ", name: "Sainsbury's TCR")
+
+# location_5 = Delivery.create(address: "101 Waterloo Road
+# London
+# SE1 8UL", name: "Sainsbury's Waterloo Road")
+
+# location_5 = Delivery.create(address: "101 Waterloo Road
+# London
+# SE1 8UL", name: "Sainsbury's Waterloo Road")
+
+# location_6 = Delivery.create(address: "59 High Street
+# Croydon
+# CR0 1QD", name: "Sainsbury's Croydon High Street")
+
+# location_7 = Delivery.create(address: "120-122 Whitehorse Lane
+# London
+# SE25 6XB", name: "Sainsbury's Crystal Palace")
+
+# location_8 = Delivery.create(address: "7 - 11 Kingston Road
+# London
+# SW19 1JX", name: "Sainsbury's Wimbledon South")
+
+# location_9 = Delivery.create(address: "2-6 Werter Road
+# London
+# SW15 2LJ", name: "Sainsbury's Putney")
+
+# location_10 = Delivery.create(address: "329-333 Kentish Town Road
+# London
+# NW5 2TJ", name: "Sainsbury's Kentish Town")
+
+# location_11 = Delivery.create(address: "30 - 32 Surrey Quays Road
+# London
+# SE16 7ED", name: "Sainsbury's Canada Water")
+
+# location_12 = Delivery.create(address: "231-235 Greenwich High Road
+# London
+# SE10 8NB", name: "Sainsbury's Greenwich High Road")
+
+# location_13 = Delivery.create(address: "Twickenham Railway Station
+# 82 London Road
+# Twickenham
+# TW1 1BD", name: "Sainsbury's Twickenham Station")
+
+# location_14 = Delivery.create(address: "35-39 South Ealing Road
+# London
+# W5 4QT", name: "Sainsbury's South Ealing")
+
+# location_15 = Delivery.create(address: "146 High Street
+# Barnet
+# EN5 5XP", name: "Sainsbury's Barnet High Street")
+
+# puts "#{Delivery.count} Delivery locations created"
+
 # SIZES = ['6', '8', '10', '12', '14', '16', '18']
 # CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
 # PRICES = [2.50, 4.50, 9.50, 7.50, 20, 10, 2.99]
@@ -58,7 +127,6 @@ puts "Users created"
 #   end
 # end
 # #  product = Product.create!(name: 'Vintage Jeans', description: 'Really nice', category: 'Tops', size:'8', user_id: User.first.id)
-
 
 require 'open-uri'
 require 'nokogiri'
