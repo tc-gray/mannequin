@@ -127,10 +127,12 @@
                 </div>
               <% end %>
             <% end %>
-            <% if booking.orders.find_by(user: booking.user).state == "Paid"  || booking.status == "Declined"%>
-              <p><%= booking.status == "Declined" ? "Declined" : "Paid"%></p>
-              <%= link_to booking_path(booking), method: :delete, remote: true do%>
-                <i class="fas fa-times"></i>
+            <% if booking.orders.length > 0 %>
+              <% if booking.orders.find_by(user: booking.user).state == "Paid"  || booking.status == "Declined"%>
+                <p><%= booking.status == "Declined" ? "Declined" : "Paid"%></p>
+                <%= link_to booking_path(booking), method: :delete, remote: true do%>
+                  <i class="fas fa-times"></i>
+                <% end %>
               <% end %>
             <% end %>
           </div>
