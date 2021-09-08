@@ -4,10 +4,10 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :category, collection: Product::CATEGORYS %>
+    <%= f.input :category, collection: Product::CATEGORYS, include_blank: false%>
     <%= f.input :description %>
-    <%= f.input :size, collection: Product::SIZES %>
-    <%= f.input :price_cents %>
+    <%= f.input :size, collection: Product::SIZES, include_blank: false %>
+    <%= f.input :price %>
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   </div>
 

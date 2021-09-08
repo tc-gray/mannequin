@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :category, presence: true
-  validates :size, presence: true
+  validates :size, :price, presence: true
 
   SIZES = ['6', '8', '10', '12', '14', '16', '18']
   CATEGORYS = ['dress', 'trousers', 'top', 'shoes', 'sweater']
@@ -24,4 +24,6 @@ class Product < ApplicationRecord
     }
 
   monetize :price_cents
+
+  acts_as_favoritable
 end
