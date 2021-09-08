@@ -10,31 +10,32 @@
 
 puts "Cleaning database"
 
-Booking.destroy_all
-User.destroy_all
+# Booking.destroy_all
+# User.destroy_all
 # Product.destroy_all
+Delivery.destroy_all
 
 puts "Database cleaned"
 
-def attach_photo(user)
-  url = "https://source.unsplash.com/random?sig=#{rand(1..60)}/&portrait/300x300"
-  file = URI.open(url)
-  user.photo.attach(io: file, filename: "#{user.first_name.gsub(" ", "-")}.jpeg", content_type: 'image/jpeg')
-end
+# def attach_photo(user)
+#   url = "https://source.unsplash.com/random?sig=#{rand(1..60)}/&portrait/300x300"
+#   file = URI.open(url)
+#   user.photo.attach(io: file, filename: "#{user.first_name.gsub(" ", "-")}.jpeg", content_type: 'image/jpeg')
+# end
 
-user_1 = User.create(username:'Johnnyfash', email: 'john@gmail.com', first_name: 'John', last_name: 'Smith', password: '123456')
-attach_photo(user_1)
+# user_1 = User.create(username:'Johnnyfash', email: 'john@gmail.com', first_name: 'John', last_name: 'Smith', password: '123456')
+# attach_photo(user_1)
 
-puts "user created"
+# puts "user created"
 
-user_2 = User.create(username:'Sallyfash', email: 'sally@gmail.com', first_name: 'Sally', last_name: 'Moon', password: '123456')
-attach_photo(user_2)
+# user_2 = User.create(username:'Sallyfash', email: 'sally@gmail.com', first_name: 'Sally', last_name: 'Moon', password: '123456')
+# attach_photo(user_2)
 
-user_3 = User.create(username:'Jessicafash', email: 'jessica@gmail.com', first_name: 'Jessica', last_name: 'Rabbit', password: '123456')
-attach_photo(user_3)
+# user_3 = User.create(username:'Jessicafash', email: 'jessica@gmail.com', first_name: 'Jessica', last_name: 'Rabbit', password: '123456')
+# attach_photo(user_3)
 
-user_4 = User.create(username:'Sonnyfash', email: 'sonny@gmail.com', first_name: 'Sonny', last_name: 'Jim', password: '123456')
-attach_photo(user_4)
+# user_4 = User.create(username:'Sonnyfash', email: 'sonny@gmail.com', first_name: 'Sonny', last_name: 'Jim', password: '123456')
+# attach_photo(user_4)
 
 puts "Users created"
 
@@ -58,6 +59,53 @@ W1T 1BJ
 location_5 = Delivery.create(address: "101 Waterloo Road
 London
 SE1 8UL", name: "Sainsbury's Waterloo Road")
+
+location_5 = Delivery.create(address: "101 Waterloo Road
+London
+SE1 8UL", name: "Sainsbury's Waterloo Road")
+
+location_6 = Delivery.create(address: "59 High Street
+Croydon
+CR0 1QD", name: "Sainsbury's Croydon High Street")
+
+location_7 = Delivery.create(address: "120-122 Whitehorse Lane
+London
+SE25 6XB", name: "Sainsbury's Crystal Palace")
+
+location_8 = Delivery.create(address: "7 - 11 Kingston Road
+London
+SW19 1JX", name: "Sainsbury's Wimbledon South")
+
+location_9 = Delivery.create(address: "2-6 Werter Road
+London
+SW15 2LJ", name: "Sainsbury's Putney")
+
+location_10 = Delivery.create(address: "329-333 Kentish Town Road
+London
+NW5 2TJ", name: "Sainsbury's Kentish Town")
+
+location_11 = Delivery.create(address: "30 - 32 Surrey Quays Road
+London
+SE16 7ED", name: "Sainsbury's Canada Water")
+
+location_12 = Delivery.create(address: "231-235 Greenwich High Road
+London
+SE10 8NB", name: "Sainsbury's Greenwich High Road")
+
+location_13 = Delivery.create(address: "Twickenham Railway Station
+82 London Road
+Twickenham
+TW1 1BD", name: "Sainsbury's Twickenham Station")
+
+location_14 = Delivery.create(address: "35-39 South Ealing Road
+London
+W5 4QT", name: "Sainsbury's South Ealing")
+
+location_15 = Delivery.create(address: "146 High Street
+Barnet
+EN5 5XP", name: "Sainsbury's Barnet High Street")
+
+puts "Delivery locations created"
 
 # SIZES = ['6', '8', '10', '12', '14', '16', '18']
 # CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
@@ -83,10 +131,10 @@ SE1 8UL", name: "Sainsbury's Waterloo Road")
 require 'open-uri'
 require 'nokogiri'
 
-user_array = [user_1, user_2, user_3, user_4]
-search_term_array = ['dress', 'trousers', 'top', 'shoes', 'sweater']
-color_array = ['red', 'pink', 'white', 'blue', 'green', 'black', 'multicolor']
-sizes_array = ['6', '8', '10', '12', '14', '16', '18']
+# user_array = [user_1, user_2, user_3, user_4]
+# search_term_array = ['dress', 'trousers', 'top', 'shoes', 'sweater']
+# color_array = ['red', 'pink', 'white', 'blue', 'green', 'black', 'multicolor']
+# sizes_array = ['6', '8', '10', '12', '14', '16', '18']
 
 # 15.times do
 #   search_term = search_term_array.sample
