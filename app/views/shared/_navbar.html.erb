@@ -12,14 +12,8 @@
       <%= link_to 'Rent Clothing', products_path, class: 'nav-link' %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Profile', user_path, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Chats', chats_path, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" href="#">Community</a>
-      <%# <%= link_to 'Community', ##, class: 'nav-link' %>
+      <%# <%= link_to 'Community', community_path, class: 'nav-link' %>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">About Us</a>
@@ -35,6 +29,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: -70px">
             <a class="dropdown-item" href="#"></a>
             <%= link_to 'My Profile', user_path, class: 'dropdown-item' %>
+            <%= link_to 'Chats', chats_path, class: 'dropdown-item' %>
             <%= link_to 'Add a Listing', new_product_path, class: 'dropdown-item' %>
             <div class="dropdown-divider"></div>
             <%= link_to 'Logout', destroy_user_session_path, method: :delete, remote: false, class: 'dropdown-item' %>

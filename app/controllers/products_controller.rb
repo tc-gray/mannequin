@@ -23,6 +23,8 @@ class ProductsController < ApplicationController
     @products = Product.all
     @product_review = ProductReview.new(product: @product)
     @user_products = @product.user.products.where.not(id: @product.id)
+    # @chatroom = Chatroom.find_by(user: current_user, product: @product)
+    @chatroom = Chatroom.new
   end
 
   def new

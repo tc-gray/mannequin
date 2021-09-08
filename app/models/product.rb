@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :product_reviews, dependent: :destroy
   has_many :bookings, dependent: :destroy
-  has_many :chatrooms
+  has_many :chatrooms, dependent: :destroy
   has_many_attached :photos
 
   validates :name, presence: true
