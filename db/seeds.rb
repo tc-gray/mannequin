@@ -105,7 +105,7 @@ location_15 = Delivery.create(address: "146 High Street
 Barnet
 EN5 5XP", name: "Sainsbury's Barnet High Street")
 
-puts "Delivery locations created"
+puts "#{Delivery.count} Delivery locations created"
 
 # SIZES = ['6', '8', '10', '12', '14', '16', '18']
 # CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
