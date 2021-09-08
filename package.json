@@ -9,6 +9,7 @@
     "@rails/webpacker": "4.3.0",
     "aos": "^3.0.0-beta.6",
     "bootstrap": "4.6",
+    "hover.css": "^2.3.2",
     "jquery": "^3.6.0",
     "jquery-bar-rating": "^1.2.2",
     "mapbox-gl": "^2.4.1",
