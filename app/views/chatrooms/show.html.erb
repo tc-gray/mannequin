@@ -1,20 +1,23 @@
 <div class="container chatroom-show-container chat-panel">
-  <div class="row no-gutters">
+  <div class="row">
     <div class="col-12 col-md-3 chatroom-show-sidebar">
-      <h1>Your chatrooms</h1>
+      <h1>Your current chats</h1>
       <%= render partial: 'chatrooms' %>
     </div>
-    <div class="col-sm-12 col-md-8">
-      <div class="chatroom-details">
-        <h1><%= @chatroom.product.name %></h1>
-        <button class="btn btn-ghost-3" id="sweet-alert-demo">End chat</button>
-        <%= link_to "", chatroom_path(@chatroom), method: :delete, id: "delete-link", class: "hidden"%>
+
+    <div class="col-sm-12 col-md-8 chatroom-messages-container">
+      <div class="chatroom-details-container">
+        <div class="chatroom-details">
+          <h1><%= @chatroom.product.name %></h1>
+          <button class="btn btn-ghost-3" id="sweet-alert-demo">End chat</button>
+          <%= link_to "", chatroom_path(@chatroom), method: :delete, id: "delete-link", class: "hidden chat-end-link"%>
+        </div>
+        <h6><%= link_to "Go to this product ➡", product_path(@chatroom.product), class: "chatroom-show-product-link hvr-underline-from-left" %></h6>
       </div>
-      <h6><%= link_to "Go to this product", product_path(@chatroom.product) %></h6>
       <hr>
-      <h6><%= @chatroom.user.username %> | <%= @chatroom.product.user.username %></h6>
+      <h6>Users in chat: <%= @chatroom.user.username %> | <%= @chatroom.product.user.username %></h6>
       <hr>
-      <div id="messages" class="chat-bubble chat-bubble--right" data-chatroom-id="<%= @chatroom.id %>">
+      <div id="messages" class="chat-bubble chat-bubble--left" data-chatroom-id="<%= @chatroom.id %>">
         <% @chatroom.messages.each do |message| %>
           <div class="message-container" id="message-<%= message.id %>">
             <i class="author">
