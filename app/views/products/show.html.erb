@@ -52,7 +52,11 @@
             <% else %>
               <img src="https://source.unsplash.com/NE0XGVKTmcA/200x200" class="card-trip-user avatar-bordered" />
             <% end %>
-            <p><%= link_to @product.user.username, user_profile_path(@product.user) %></p>
+            <% if @product.user == current_user %>
+              <p><%= link_to @product.user.username, user_path %></p>
+            <% else %>
+              <p><%= link_to @product.user.username, user_profile_path(@product.user) %></p>
+            <% end %>
           </div>
           <hr class="horizontal-rule">
           <p><%= @product.description %></p>
@@ -61,6 +65,7 @@
           <p>SIZE: <%= @product.size %></p>
           <p>PRICE: <%= humanized_money_with_symbol(@product.price) %></p>
           <div class="btn-container">
+          <% if @product.user != current_user %>
             <%= link_to "Ask the seller", new_product_chatroom_path(@product), class: "btn btn-ghost", id: "btn-ghost" %>
             <%= link_to " <i class='#{current_user.favorited?(@product) ? 'fas' : 'far'} fa-heart'></i> Add to favourites".html_safe, toggle_favorite_product_path(@product), remote: true, method: :post, class: "btn btn-ghost", id: "btn-ghost" %>
             <% if user_signed_in? %>

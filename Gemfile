@@ -26,6 +26,7 @@ gem 'redis', '~> 4.0'
 # gem 'image_processing', '~> 1.2'
 
 gem 'pg_search', '~> 2.3.0'
+gem 'geocoder'
 
 gem 'pundit'
 gem 'cloudinary', '~> 1.16.0'

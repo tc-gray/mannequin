@@ -12,8 +12,6 @@
       </div>
       <h6><%= link_to "Go to this product", product_path(@chatroom.product) %></h6>
       <hr>
-      <h3>Topic: <%= @chatroom.name %></h3>
-      <hr>
       <h6><%= @chatroom.user.username %> | <%= @chatroom.product.user.username %></h6>
       <hr>
       <div id="messages" class="chat-bubble chat-bubble--right" data-chatroom-id="<%= @chatroom.id %>">

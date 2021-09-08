@@ -1,0 +1,5 @@
+<h2><%= delivery.name %></h2>
+<p><%= delivery.address %></p>
+<%= form_tag product_booking_deliveries_path(product, booking), method: :post do %>
+  <%= submit_tag "Select", class: "btn btn-primary" %>
+<% end %>
