@@ -15,8 +15,11 @@ Rails.application.routes.draw do
     end
     resources :product_reviews, only: [:create]
   end
-  resources :bookings, only: [:update]
+  resources :bookings, only: [:update, :destroy]
   resources :user_reviews, only: [:create]
+  resources :orders, only: [:show, :create]
+
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
   # to access the chatrooms from outside the products routes
   # we can unnest the chatrooms show and the messages create from the products
   # and just put it outside the loop
