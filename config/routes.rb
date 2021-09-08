@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :chatrooms, only: [:new, :create]
     resources :bookings, only: [:create, :new] do
+      resources :deliveries, only: [:new, :create]
       collection do
         get :confirmation
       end

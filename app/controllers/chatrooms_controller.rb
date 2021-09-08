@@ -26,6 +26,7 @@ class ChatroomsController < ApplicationController
       redirect_to chatroom_path(@chatroom)
     else
       @chatroom = Chatroom.new
+      create
     end
   end
 
@@ -38,7 +39,9 @@ class ChatroomsController < ApplicationController
     # we need to append the value for a user and a product to it
     # thus we .merge product = @product where that is Product.find(product_params)
     # and the user is the current user aka the client
-    @new_chatroom = Chatroom.new chatroom_parameters.merge(product: @product, user: current_user)
+    @new_chatroom = Chatroom.new
+    @new_chatroom.product = @product
+    @new_chatroom.user = current_user
     # problem is, now need to work out how to make it so that if a chatroom already exists
     # with current user and current product
     # render the existing chatroom instead of making a new one
@@ -69,6 +72,6 @@ class ChatroomsController < ApplicationController
   end
 
   def chatroom_parameters
-    params.require(:chatroom).permit(:name)
+    params.require(:chatroom).permit(:name, :product_id)
   end
 end
