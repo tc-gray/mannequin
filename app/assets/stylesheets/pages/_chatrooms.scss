@@ -1,13 +1,74 @@
 .room-nav-link {
   border: 1px solid lighten($primary, 40%);
   background: lighten($primary, 45%);
+  background-color: #f0e8e5;
+  border-right: 5px solid #D8AC9C;
+  margin: 4px 0;
+  border-bottom: 1px solid black;
+  border-top: none;
+  border-left: none;
 
   &+.room-nav-link {
     border-top: 0 none;
   }
 }
 
+/* Sweep To Right */
+.hvr-sweep-to-right {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.hvr-sweep-to-right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #e3c0b4;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.hvr-sweep-to-right:hover,
+.hvr-sweep-to-right:focus,
+.hvr-sweep-to-right:active {
+  color: white;
+  text-decoration: none;
+}
+
+.hvr-sweep-to-right:hover:before,
+.hvr-sweep-to-right:focus:before,
+.hvr-sweep-to-right:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
 // Chatroom Index Page Styling
+
+.chatroom-index-sidebar {
+  background-color: #f0e8e5;
+  padding: 20px 10px;
+}
+
 .chatroom-index-container {
   margin: 40px auto;
 }
@@ -18,11 +79,36 @@
   margin: 20px auto;
 }
 
+// Chatroom show sidebar styling
+
+.chatroom-show-sidebar {
+  background-color: #f0e8e5;
+  padding: 20px 10px;
+}
+
 // Chatroom Show Page Styling
+
+.chatroom-messages-container {
+  background-color: #f0e8e5;
+  padding: 15px;
+}
 
 .chatroom-details {
   display: flex;
   justify-content: space-between;
+}
+
+.chatroom-show-product-link {
+  text-decoration: none;
+}
+
+.chatroom-show-product-link:hover {
+  text-decoration: none;
+}
+
+.chat-end-link {
+  width: 0px;
+  position: fixed;
 }
 
 .chatroom-show-container {
@@ -31,6 +117,41 @@
 
 .chatroom-show-sidebar {
   margin: 0 20px 0 0;
+}
+
+// Chatroom show hover effects
+/* Underline From Left */
+.hvr-underline-from-left {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.hvr-underline-from-left:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: #2098D1;
+  height: 4px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.hvr-underline-from-left:hover:before,
+.hvr-underline-from-left:focus:before,
+.hvr-underline-from-left:active:before {
+  right: 0;
 }
 
 // new styling for chatroom show and bubbles
@@ -47,10 +168,6 @@ $blue: #74b9ff;
   background: #eee;
   padding: 10px 15px;
   border-radius: 7px;
-
-  .no-gutters {
-    padding: 0;
-  }
 
   &--right {
     float: right;
