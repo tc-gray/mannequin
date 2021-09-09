@@ -68,7 +68,12 @@
           <% if @product.user != current_user %>
             <%= link_to "Ask the seller", new_product_chatroom_path(@product), class: "btn btn-ghost", id: "btn-ghost" %>
           <% end %>
-            <%= link_to " <i class='#{current_user.favorited?(@product) ? 'fas' : 'far'} fa-heart'></i> Add to favourites".html_safe, toggle_favorite_product_path(@product), remote: true, method: :post, class: "btn btn-ghost", id: "btn-ghost" %>
+            <% if current_user.favorited?(@product) %>
+              <%= link_to "<i class='fas fa-heart'></i> Added to favourites".html_safe, toggle_favorite_product_path(@product), remote: true, method: :post, class: "btn btn-ghost", id: "btn-ghost" %>
+            <% else %>
+              <%= link_to "<i class='far fa-heart'></i> Add to favourites".html_safe, toggle_favorite_product_path(@product), remote: true, method: :post, class: "btn btn-ghost", id: "btn-ghost" %>
+            <% end %>
+
             <% if user_signed_in? %>
               <% if @product.user != current_user %>
                 <%= link_to 'BOOK NOW', new_product_booking_path(@product), class: "btn btn-primary btn-book" %>
