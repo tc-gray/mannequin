@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'my-account', to: 'users#show', as: 'user'
   get 'user/:id', to: 'users#profile', as: 'user_profile'
   get 'community', to: 'pages#community'
+  get 'about-us', to: 'pages#about_us'
   get 'chats', to: 'chatrooms#index', as: 'chats'
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [:update, :destroy]
   resources :user_reviews, only: [:create]
   resources :orders, only: [:show, :create]
+
 
   mount StripeEvent::Engine, at: '/stripe-webhooks'
   # to access the chatrooms from outside the products routes
