@@ -8,10 +8,12 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :category, presence: true
-  validates :size, presence: true
+  validates :size, :price, presence: true
 
-  SIZES = ['6', '8', '10', '12', '14', '16', '18']
-  CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
+  SIZES = ['6', '8', '10', '12', '14', '16', '18', '20']
+  CATEGORYS = ['dress', 'trousers', 'top', 'shoes', 'sweater']
+  COLOR = ['red', 'pink', 'white', 'blue', 'green', 'black', 'multicolor']
+  # CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
 
   include PgSearch::Model
   pg_search_scope :search_by_name_and_description_and_size_and_category,
@@ -22,4 +24,6 @@ class Product < ApplicationRecord
     }
 
   monetize :price_cents
+
+  acts_as_favoritable
 end

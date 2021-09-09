@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :products do
+       member do
+         post 'toggle_favorite', to: "products#toggle_favorite"
+     end
     resources :chatrooms, only: [:new, :create]
     resources :bookings, only: [:create, :new] do
       resources :deliveries, only: [:new, :create]
