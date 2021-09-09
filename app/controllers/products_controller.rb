@@ -2,11 +2,10 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
-
     if params[:query].present?
       filter_query_results(params[:query])
-    elsif params[:category].present?
-      filter_category_results(params[:category])
+    elsif params[:category].present? || params[:size].present?
+      filter_category_results(params)
     elsif params["sort-by"].present?
       filter_sort_results(params["sort-by"])
     else
@@ -84,16 +83,20 @@ class ProductsController < ApplicationController
     session[:search_category] = params
     if session[:search_query] && session[:search_sort]
       search = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
-      array = search.where("category ILIKE ?", "%#{params}%")
+      size_array = search.where("size ILIKE ?", "%#{params[:size]}%")
+      array = size_array.where("category ILIKE ?", "%#{params[:category]}%")
       @products = sort(array, session[:search_sort])
     elsif session[:search_query]
       search = Product.search_by_name_and_description_and_size_and_category(session[:search_query])
-      @products = search.where("category ILIKE ?", "%#{params}%")
+      size_array = search.where("size ILIKE ?", "%#{params[:size]}%")
+      @products = size_array.where("category ILIKE ?", "%#{params[:category]}%")
     elsif session[:search_sort]
-      array = Product.where("category ILIKE ?", "%#{params}%")
+      size_array = Product.where("size ILIKE ?", "%#{params[:size]}%")
+      array = size_array.where("category ILIKE ?", "%#{params[:category]}%")
       @products = sort(array, session[:search_sort])
     else
-      @products = Product.where("category ILIKE ?", "%#{params}%")
+      size_array = Product.where("size ILIKE ?", "%#{params[:size]}%")
+      @products = size_array.where("category ILIKE ?", "%#{params[:category]}%")
     end
   end
 

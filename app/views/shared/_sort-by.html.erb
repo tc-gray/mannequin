@@ -1,4 +1,4 @@
 <%= form_tag products_path, method: :get, class: 'sort-by' do %>
   <%= select_tag "sort-by", "<option value='accending'>Price: Low to High</option><option value='decending'>Price: High to Low</option>".html_safe, class: 'form_input' %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+  <%= submit_tag "Sort", class: "btn btn-primary" %>
 <% end %>

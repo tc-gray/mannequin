@@ -1,11 +1,17 @@
 <%= form_tag products_path, method: :get, class: 'filter-form' do %>
-  <% i = 1 %>
-  <% ['dress', 'trouser', 'top', 'shoes', 'sweater'].each do |category| %>
-    <%= check_box_tag "category", category, false, class: 'classic-checkbox', :id => "category#{i}" %>
-    <%= label_tag("category#{i}", category.upcase) %>
-    <% i += 1 %>
+  <% ['dress', 'trouser', 'top', 'shoes', 'sweater'].each_with_index do |category, index| %>
+    <%= radio_button_tag "category", category,  false, class: 'classic-checkbox', :id => "category#{index}" %>
+    <%= label_tag("category#{index}", category.upcase) %>
+  <% end %>
+  <br>
+  <h4 class="mt-2">Size</h4>
+  <hr>
+  <% ['6', '8', '10', '12', '14', '16', '18'].each_with_index do |size, index| %>
+    <%= radio_button_tag "size", size,  false, class: 'classic-checkbox', :id => "size#{index}" %>
+    <%= label_tag("size#{index}", size.upcase) %>
   <% end %>
     <br>
     <br>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+    <%= submit_tag "Filter Products", class: "btn btn-primary btn-block" %>
+    <%= link_to 'Reset Filters', products_path, class: 'btn btn-light btn-block' %>
 <% end %>
