@@ -180,6 +180,47 @@ a:hover {
   transform: translate3d(0px, 0px, 0px);
 }
 
+// home details styling
+
+.home-row {
+  display: flex;
+  justify-content: center;
+}
+
+.home-details {
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-ghost-home {
+  color: rgb(150, 131, 132);
+  background-color: rgb(150, 131, 132);
+  border: 1px solid rgb(150, 131, 132);
+  color: white;
+  padding: 12px 36px;
+  border-radius: 4px;
+  font-weight: lighter;
+  width: 40%;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.btn-ghost-home:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: white;
+  color: black;
+}
+
+.home-details p {
+  @import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+  font-family: "Urbanist";
+  font-size: 16px;
+}
+
 // blog container styling
 
 .home-blog-container {
@@ -201,12 +242,24 @@ a:hover {
   margin: 20px auto;
   display: flex;
   justify-content: center;
+  text-decoration: none;
 }
 
 .home-blog-bottom-title {
   text-align: center;
-  width: 30%;
+  width: 25%;
   text-decoration: none;
+}
+
+#blog-bottom-title {
+  text-decoration: none;
+  font-size: 18px;
+}
+
+#blog-bottom-title:hover {
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
 }
 
 // underline from center for blog bottom title

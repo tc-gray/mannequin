@@ -118,11 +118,11 @@
                 <div class="accept-decline-buttons">
                   <%= form_with(model: booking, url: booking_path(booking), remote: true, method: :patch) do |f| %>
                     <%= f.hidden_field :status, value: "Accepted" %>
-                    <%= f.submit "Accept", class: "btn btn-success" %>
+                    <%= f.submit "Accept", class: "btn btn-success accept-btn" %>
                   <% end %>
                   <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
                     <%= f.hidden_field :status, value: "Declined" %>
-                    <%= f.submit "Decline", class: "btn btn-danger" %>
+                    <%= f.submit "Decline", class: "btn btn-danger decline-btn" %>
                   <% end %>
                 </div>
               <% end %>
