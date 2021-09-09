@@ -1,5 +1,15 @@
 <%= render 'shared/banner' %>
 
+<div class="home-details animation-element slide-left">
+  <div class="row home-row">
+    <div class="col-sm-12 col-md-8 home-details">
+      <h2>Our Pledge</h2>
+      <p style="text-align: center;">We're committed to solving the problems of fast fashion. Looking good should never come at the cost of our environment.</p>
+      <%= link_to "LEARN MORE", about_us_path, class: "btn btn-ghost-home" %>
+    </div>
+  </div>
+</div>
+
 <div class="home-blog-container">
   <h1 class="home-blog-title animation-element slide-left">Check out the Mannequin community blog</h1>
   <div class="row row-blog">
@@ -41,6 +51,6 @@
     </div>
   </div>
   <div class="home-blog-bottom-title-div">
-    <%= link_to "Check out the whole community blog here", community_path, class: "home-blog-bottom-title animation-element slide-left hvr-underline-from-center"  %>
+    <%= link_to "Check out the whole community blog here", community_path, class: "home-blog-bottom-title animation-element slide-left hvr-underline-from-center", id: "blog-bottom-title"  %>
   </div>
 </div>
