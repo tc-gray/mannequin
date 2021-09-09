@@ -11,3 +11,17 @@
   text-decoration: none !important;
   color: black;
 }
+
+.currency {
+    border: 1px solid #241E19;
+    border-radius: 3px;
+    color: #241E19;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    line-height: 12px;
+    font-weight: bold;
+    padding: 3px 10px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
