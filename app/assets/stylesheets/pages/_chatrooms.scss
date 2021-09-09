@@ -241,6 +241,14 @@ $blue: #74b9ff;
   }
 }
 
+.chat-bubble-blue {
+  background-color: $blue;
+}
+
+.chat-bubble-white {
+  background-color: white;
+}
+
 .chat-box-tray {
   background: #eee;
   display: flex;
