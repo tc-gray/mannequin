@@ -20,17 +20,17 @@
           </ol>
           <div class="carousel-inner" style=" width:100%; object-fit:cover;">
             <% if @product.photos.attached? %>
-            <% @product.photos.each_with_index do |photo, index| %>
-            <% if index == 0 %>
-            <div class="carousel-item active carousel-img">
-              <%= cl_image_tag photo.key, :height=>720, :crop=>"scale", style: 'width: 100%;', class: "product-img"%>
-            </div>
-            <% else %>
-            <div class="carousel-item carousel-img">
-              <%= cl_image_tag photo.key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img" %>
-            </div>
-            <% end %>
-            <% end %>
+              <% @product.photos.each_with_index do |photo, index| %>
+                <% if index == 0 %>
+                  <div class="carousel-item active carousel-img">
+                    <%= cl_image_tag photo.key, :height=>720, :crop=>"scale", style: 'width: 100%;', class: "product-img"%>
+                  </div>
+                <% else %>
+                  <div class="carousel-item carousel-img">
+                    <%= cl_image_tag photo.key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img" %>
+                  </div>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators-1" role="button" data-slide="prev">
@@ -61,14 +61,14 @@
           <hr class="horizontal-rule">
           <p><%= @product.description %></p>
           <hr class="horizontal-rule">
-          <p>CATEGORY: <%= @product.category %></p>
+          <p>CATEGORY: <%= @product.category.upcase %></p>
           <p>SIZE: <%= @product.size %></p>
           <p>PRICE: <%= humanized_money_with_symbol(@product.price) %></p>
           <div class="btn-container">
           <% if @product.user != current_user %>
             <%= link_to "Ask the seller", new_product_chatroom_path(@product), class: "btn btn-ghost", id: "btn-ghost" %>
           <% end %>
-            <%= link_to "♡ Add to favourites", "#", class: "btn btn-ghost", id: "btn-ghost" %>
+            <%= link_to " <i class='#{current_user.favorited?(@product) ? 'fas' : 'far'} fa-heart'></i> Add to favourites".html_safe, toggle_favorite_product_path(@product), remote: true, method: :post, class: "btn btn-ghost", id: "btn-ghost" %>
             <% if user_signed_in? %>
               <% if @product.user != current_user %>
                 <%= link_to 'BOOK NOW', new_product_booking_path(@product), class: "btn btn-primary btn-book" %>
@@ -79,6 +79,14 @@
             <% end %>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="container accordion-container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 accordion-box">
+      <%= render 'shared/accordion' %>
     </div>
   </div>
 </div>

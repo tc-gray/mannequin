@@ -17,6 +17,7 @@ class BookingsController < ApplicationController
     if @booking.save
       create_order
       redirect_to user_path(@product)
+      # redirect_to new_product_booking_delivery_path(@booking)
     else
       render "bookings/new"
     end
