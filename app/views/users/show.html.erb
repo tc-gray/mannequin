@@ -1,16 +1,19 @@
-<div class="container d-flex mt-5 align-items-center">
+<div class="container d-flex mt-5 align-items-start">
   <% if current_user.photo.attached? %>
-    <%= cl_image_tag current_user.photo.key, height: 300, width: 400, crop: :fill, class: 'avatar-large avatar-profile' %>
+    <%= cl_image_tag current_user.photo.key, height: 400, width: 400, crop: :fill, class: 'avatar-large avatar-profile m-3' %>
   <% else %>
     <img class="avatar-large avatar-profile" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
   <% end %>
-  <div class="my-account-details">
-    <h1>Hi, <%= current_user.first_name.capitalize %></h1>
-    <p>Check out your products and bookings below.</p>
+  <div class="my-account-details ml-4">
+    <h1 class="mb-5">Hi, <%= current_user.first_name.capitalize %></h1>
+    <hr>
+    <br>
+    <p><i class="fas fa-user"></i> <%= current_user.username %></p>
+    <h6>Check out your products and bookings below.</h6>
   </div>
+  <hr>
 </div>
 
-<hr>
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="nav-link "><a data-toggle="tab" href="#home">Pending Bookings</a></li>
@@ -198,8 +201,5 @@
     </div>
   </div>
 </div>
-
-<hr>
-
 
 <hr>
