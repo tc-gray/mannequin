@@ -18,15 +18,27 @@
       <h6>Users in chat: <%= @chatroom.user.username %> | <%= @chatroom.product.user.username %></h6>
       <hr>
       <div class="chat-panel">
-        <div id="messages" class="chat-bubble chat-bubble-blue chat-bubble--right" data-chatroom-id="<%= @chatroom.id %>">
+        <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
           <% @chatroom.messages.each do |message| %>
-            <div class="message-container" id="message-<%= message.id %>">
-              <i class="author">
-                <span><%= message.user.username %></span>
-                <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-              </i>
-              <p><%= message.content %></p>
-            </div>
+            <% if message.user == current_user %>
+              <div class="chat-direction">
+                <div class="message-container chat-bubble chat-bubble-blue chat-bubble--right" id="message-<%= message.id %>">
+                  <i class="author">
+                    <span><%= message.user.username %></span>
+                    <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+                  </i>
+                  <p><%= message.content %></p>
+                </div>
+              </div>
+            <% else %>
+              <div class="message-container chat-bubble chat-bubble-white chat-bubble--left" id="message-<%= message.id %>">
+                <i class="author">
+                  <span><%= message.user.username %></span>
+                  <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+                </i>
+                <p><%= message.content %></p>
+              </div>
+            <% end %>
           <% end %>
         </div>
         <div class="chatroom-send-container">
