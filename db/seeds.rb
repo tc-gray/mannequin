@@ -10,10 +10,15 @@
 
 puts "Cleaning database"
 
+ProductReview.destroy_all
+Order.destroy_all
+Message.destroy_all
+Favorite.destroy_all
+Delivery.destroy_all
+Chatroom.destroy_all
 Booking.destroy_all
 User.destroy_all
 Product.destroy_all
-# Delivery.destroy_all
 
 puts "Database cleaned"
 
@@ -25,8 +30,6 @@ end
 
 user_1 = User.create(username:'Johnnyfash', email: 'john@gmail.com', first_name: 'John', last_name: 'Smith', password: '123456')
 attach_photo(user_1)
-
-puts "user created"
 
 user_2 = User.create(username:'Sallyfash', email: 'sally@gmail.com', first_name: 'Sally', last_name: 'Moon', password: '123456')
 attach_photo(user_2)
@@ -137,7 +140,7 @@ color_array = ['red', 'pink', 'white', 'blue', 'green', 'black', 'multicolor']
 sizes_array = ['6', '8', '10', '12', '14', '16', '18']
 
 
-5.times do
+15.times do
   search_term = search_term_array.sample
   color = color_array.sample
 
