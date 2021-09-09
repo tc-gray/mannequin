@@ -51,6 +51,16 @@ document.addEventListener('turbolinks:load', () => {
       link.click();
     }
   });
+  initSweetalert('#sweet-alert-subscribe', {
+    title: "Subscribed!",
+    text: "We'll be in touch with you by email shortly",
+    icon: "success"
+  }, (value) => {
+    if (value) {
+      const link = document.querySelector('#subscribe-link');
+      link.click();
+    }
+  });
   initMapbox();
   AOS.init();
 });
