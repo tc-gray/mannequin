@@ -134,7 +134,7 @@ require 'nokogiri'
 user_array = [user_1, user_2, user_3, user_4]
 search_term_array = ['dress', 'trousers', 'top', 'shoes', 'sweater']
 color_array = ['red', 'pink', 'white', 'blue', 'green', 'black', 'multicolor']
-sizes_array = ['6', '8', '10', '12', '14', '16', '18']
+sizes_array = ['6', '8', '10', '12', '14', '16', '18',]
 
 
 5.times do
