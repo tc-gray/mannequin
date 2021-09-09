@@ -1,9 +1,9 @@
 .footer {
   background: $light-pink;
-  height: 100px;
   padding: 0px 50px;
   color: rgba(0,0,0,0.3);
   background-color: $light-pink;
+  padding-top: 50px;
 }
 
 .footer-links {
@@ -34,6 +34,20 @@ html, body {
   padding-bottom: 100px;
 }
 .footer {
-  height: 100px;
   margin-top: -100px;
+}
+
+// footer details
+
+.footer-details-row {
+  margin-top: 50px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer-details-link {
+  margin: 5px 0;
+  height: auto;
+  color: black;
 }

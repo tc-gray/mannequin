@@ -296,3 +296,51 @@ a:hover {
   left: 0;
   right: 0;
 }
+
+// email form styling
+/* Style the form element with a border around it */
+
+.home-email-form {
+  border: 4px solid #f1f1f1;
+  background-color: white;
+  padding: 60px 0;
+}
+
+/* Add some padding and a grey background color to containers */
+.email-container {
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+.home-email-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style the input elements and the submit button */
+.email-form-text-input,
+.email-form-submit {
+  width: 60%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Add margins to the checkbox */
+.email-form-checkbox {
+  margin-top: 16px;
+}
+
+/* Style the submit button */
+.email-form-submit {
+  background-color: #04AA6D;
+  color: white;
+  border: none;
+}
+
+.email-form-submit:hover {
+  opacity: 0.8;
+}

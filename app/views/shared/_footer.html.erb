@@ -14,16 +14,30 @@
   <div class="row footer-details">
     <div class="col-md-10">
       <div>
-        <div class="row">
-          <div class="col-sm-12 col-md-2">
+        <div class="row footer-details-row">
+          <div class="col-sm-4 col-md-2">
             <h2>Company</h2>
-            <%= link_to "ABOUT US", about_us_path %>
-            <%= link_to "COMMUNITY", community_path %>
-            <p>CHARITY</p>
-            <p>PRESS</p>
-            <p>CAREERS</p>
-            <p>OUR PARTNERS</p>
-            <p>CONTACT US</p>
+            <%= link_to "ABOUT US", about_us_path, class: "footer-details-link"%>
+            <%= link_to "COMMUNITY", community_path, class: "footer-details-link" %>
+            <p class="footer-details-link">CHARITY</p>
+            <p class="footer-details-link">PRESS</p>
+            <p class="footer-details-link">CAREERS</p>
+            <p class="footer-details-link">OUR PARTNERS</p>
+            <p class="footer-details-link">CONTACT US</p>
+          </div>
+          <div class="col-sm-4 col-md-2">
+            <h2>Legal</h2>
+            <p class="footer-details-link">TERMS OF SERVICE</p>
+            <p class="footer-details-link">PRIVACY POLICY</p>
+            <p class="footer-details-link">COOKIES POLICY</p>
+          </div>
+          <div class="col-sm-4 col-md-2">
+            <h2>Explore</h2>
+            <p class="footer-details-link">FAQS</p>
+            <p class="footer-details-link">DELIVERY</p>
+            <p class="footer-details-link">GIFT CARDS</p>
+            <p class="footer-details-link">RENTING WITH US</p>
+            <p class="footer-details-link">DRY CLEANING</p>
           </div>
         </div>
       </div>
