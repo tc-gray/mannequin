@@ -1,13 +1,14 @@
 <%= form_tag products_path, method: :get, class: 'filter-form' do %>
-  <% ['dress', 'trouser', 'top', 'shoes', 'sweater'].each_with_index do |category, index| %>
+ <% label_name = ['dresses', 'trousers', 'tops', 'shoes', 'jumpsuits', 'sweaters', 'jeans', 'jackets', 'accessories'] %>
+  <% ['dress', 'trouser', 'top', 'shoes', 'jumpsuit', 'sweater', 'jeans', 'jacket', 'accessories'].each_with_index do |category, index| %>
     <%= radio_button_tag "category", category,  false, class: 'classic-checkbox', :id => "category#{index}" %>
-    <%= label_tag("category#{index}", category.upcase) %>
+    <%= label_tag("category#{index}", label_name[index].upcase) %>
   <% end %>
   <br>
-  <h4 class="mt-2">Size</h4>
+  <h4 class="mt-2">Size: UK</h4>
   <hr>
-  <% ['6', '8', '10', '12', '14', '16', '18'].each_with_index do |size, index| %>
-    <%= radio_button_tag "size", size,  false, class: 'classic-checkbox', :id => "size#{index}" %>
+  <% ['6', '8', '10', '12', '14', '16'].each_with_index do |size, index| %>
+    <%= radio_button_tag "size", size,  false, class: 'classic-checkbox size-filter', :id => "size#{index}" %>
     <%= label_tag("size#{index}", size.upcase) %>
   <% end %>
     <br>

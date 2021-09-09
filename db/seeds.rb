@@ -135,7 +135,7 @@ require 'open-uri'
 require 'nokogiri'
 
 user_array = [user_1, user_2, user_3, user_4]
-search_term_array = ['dress', 'trousers', 'top', 'shoes', 'sweater']
+search_term_array = ['dress', 'trouser', 'top', 'shoes', 'sweater', 'jeans', 'jacket', 'accessories', 'jumpsuit']
 color_array = ['red', 'pink', 'white', 'blue', 'green', 'black', 'multicolor']
 sizes_array = ['6', '8', '10', '12', '14', '16', '18',]
 
@@ -148,7 +148,7 @@ sizes_array = ['6', '8', '10', '12', '14', '16', '18',]
   html_file = URI.open(url).read
   html_doc = Nokogiri::HTML(html_file)
 
-  html_doc.search('.styles__ProductCard-sc-__sc-13q41bc-2').first(10).each do |element|
+  html_doc.search('.styles__ProductCard-sc-__sc-13q41bc-2').first(5).each do |element|
 
     product_url = "https://www.depop.com#{element.attribute('href').value}"
     file = URI.open(product_url).read

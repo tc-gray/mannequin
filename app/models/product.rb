@@ -11,7 +11,7 @@ class Product < ApplicationRecord
   validates :size, :price, presence: true
 
   SIZES = ['6', '8', '10', '12', '14', '16', '18', '20']
-  CATEGORYS = ['dress', 'trousers', 'top', 'shoes', 'sweater']
+  CATEGORYS = ['dress', 'trouser', 'top', 'shoes', 'jumpsuit', 'sweater', 'jeans', 'jacket', 'accessories']
   COLOR = ['red', 'pink', 'white', 'blue', 'green', 'black', 'multicolor']
   # CATEGORY = ['Tops', 'Bottoms', 'Underwear', 'Outerwear', 'Shoes']
 
