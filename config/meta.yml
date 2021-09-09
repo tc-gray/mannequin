@@ -1,6 +1,6 @@
 # config/meta.yml
 
-meta_product_name: "Mannequinn"
-meta_title: "Mannequinn - Fashion shouldn't cost the planet"
-meta_description: "Combating fashion waste, one rental garment at a time."
-meta_image: "Mannequinn.jpeg" # should exist in `app/assets/images/`
+# meta_product_name: "Mannequinn"
+# meta_title: "Mannequinn - Fashion shouldn't cost the planet"
+# meta_description: "Combating fashion waste, one rental garment at a time."
+# meta_image: "Mannequinn.jpeg" # should exist in `app/assets/images/`
