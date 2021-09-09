@@ -1,30 +1,46 @@
 <%= render 'shared/banner' %>
 
-<div class="container home-carousel-container animation-element slide-left">
-  <h1 class="home-title">Featured products</h1>
-  <div class="row home-carousel-row">
-  <div class="col-sm-12 col-md-10 home-carousel-item-container">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner home-inner">
-        <div class="carousel-item active home-carousel-item">
-          <%= cl_image_tag @products.sample.photos[0].key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img-home"%>
-        </div>
-        <div class="carousel-item home-carousel-item">
-          <%= cl_image_tag @products.sample.photos[0].key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img-home"%>
-        </div>
-        <div class="carousel-item home-carousel-item">
-          <%= cl_image_tag @products.sample.photos[0].key, :height=>512, :crop=>"scale", style: 'width: 100%;', class: "product-img-home"%>
-        </div>
+<div class="home-blog-container">
+  <h1 class="home-blog-title animation-element slide-left">Check out the Mannequin community blog</h1>
+  <div class="row row-blog">
+    <div class="col-sm-12 col-md-3 animation-element slide-left">
+      <div class="item-2">
+        <a href="https://www.harpersbazaar.com/uk/fashion/what-to-wear/g28194698/sustainable-bags-brands/" class="card">
+          <div class="thumb" style="background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/chylak-moire-collection-1-1630422002.jpg?crop=0.702xw:0.255xh;0.168xw,0.437xh&resize=980:*);"></div>
+          <article>
+            <h1>Our favourite sustainable bag brands</h1>
+            <p><br><br>The eco-friendly labels to consider for that next accessory rental! </p>
+            <span>Stephanie Ezimoha</span>
+          </article>
+        </a>
       </div>
+    </div>
+    <div class="col-sm-12 col-md-3 animation-element slide-left">
+      <div class="item-3">
+        <a href="https://www.harpersbazaar.com/uk/fashion/fashion-news/a28911531/what-is-second-hand-september/" class="card">
+          <div class="thumb" style="background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/sustainable-fashion-header-1521823866.jpg?crop=0.973xw:0.956xh;0,0.0442xh&resize=980:*);"></div>
+          <article>
+            <h1>Five ways to go beyond Second Hand September</h1>
+            <p><br><br>Being more conscious with fashion shouldn't just be for the month... </p>
+            <span>Tegan Cadney-Gray </span>
+          </article>
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-3 animation-element slide-left">
+      <div class="item-3">
+        <a href="https://www.harpersbazaar.com/uk/fashion/what-to-wear/a41158/how-to-be-sustainable-fashion/" class="card">
+          <div class="thumb" style="background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/prada-1619077084.jpg?crop=0.869xw:0.733xh;0.0929xw,0.240xh&resize=1200:*);"></div>
+          <article>
+            <h1>10 Simple Steps To Being More Sustainable</h1>
+            <p><br><br>Kickstart your journey to a more sustainable life... </p>
+            <span>Jin Mac </span>
+          </article>
+        </a>
+      </div>
+    </div>
   </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+  <div class="home-blog-bottom-title-div">
+    <%= link_to "Check out the whole community blog here", community_path, class: "home-blog-bottom-title animation-element slide-left hvr-underline-from-center"  %>
   </div>
-</div>
 </div>
