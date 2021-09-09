@@ -87,7 +87,7 @@
     <% end %>
   </div>
 </div>
-
+<% console %>
 <div class="container">
   <div class="row">
     <% current_user.requested_bookings.each do |booking| %>
@@ -116,7 +116,7 @@
             <% if booking.status == "Pending" %>
               <% if current_user == booking.product.user %>
                 <div class="accept-decline-buttons">
-                  <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
+                  <%= form_with(model: booking, url: booking_path(booking), remote: true, method: :patch) do |f| %>
                     <%= f.hidden_field :status, value: "Accepted" %>
                     <%= f.submit "Accept", class: "btn btn-success" %>
                   <% end %>

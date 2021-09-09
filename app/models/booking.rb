@@ -19,11 +19,13 @@ class Booking < ApplicationRecord
   end
 
   def overlap
-    bookings = Booking.where(product_id: product_id)
+    bookings = Booking.where(product_id: product_id).where.not(id: id)
     bookings.each do |booking|
       if start_date < booking.end_date && booking.start_date < end_date
         errors.add(:base, "Oh no! This date is already booked")
+        return false
       end
     end
+    return true
   end
 end
