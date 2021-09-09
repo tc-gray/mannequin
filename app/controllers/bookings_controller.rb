@@ -24,6 +24,7 @@ class BookingsController < ApplicationController
   end
 
   def update
+    # binding.pry
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
     redirect_to user_path

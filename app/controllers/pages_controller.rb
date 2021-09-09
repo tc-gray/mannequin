@@ -8,4 +8,9 @@ class PagesController < ApplicationController
   def community
     @products = Product.all
   end
+
+  def about_us
+    @products = Product.all
+  end
+
 end
