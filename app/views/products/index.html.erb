@@ -3,7 +3,7 @@
 </div> %>
 
 <div class="container text-right mt-5">
-  <p>sort by</p>
+   <%= render 'shared/sort-by' %>
 </div>
 
 <div class="container-fluid container-fluid-index py-5">
@@ -13,7 +13,6 @@
         <h4>Category</h4>
         <hr>
         <%= render 'shared/filter_form' %>
-        <hr>
       </div>
     </div>
     <div class="col-lg-9">
@@ -34,6 +33,11 @@
                       <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" />
                     <% end %>
                   </div>
+                  <% product.bookings.each do |booking| %>
+                    <% if (booking.start_date .. booking.end_date).cover?(Date.today) %>
+                      <p id="currently-rented">CURRENTLY RENTED</p>
+                    <% end %>
+                  <% end %>
                   <div class="card-product-infos">
                     <div>
                       <p><%= product.category.upcase %></p>
