@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
         currency: 'gbp',
         quantity: 1
       }],
-      success_url: root_path,
+      success_url: user_path(current_user),
       cancel_url: user_path(current_user)
     )
 
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    redirect_to root_path
+    redirect_to user_path(current_user)
   end
 
   # def mark_as_paid
