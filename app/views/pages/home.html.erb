@@ -64,7 +64,9 @@
 
   <div class="home-email-form-container" style="background-color:white">
     <input class="email-form-text-input" type="text" placeholder="Enter your email address here" name="mail" required>
-    <input class="btn btn-ghost-home" type="submit" value="SUBSCRIBE">
+    <input class="btn btn-ghost-home" type="submit" id="sweet-alert-subscribe" value="SUBSCRIBE">
+    <button class="btn btn-ghost-home home-hidden-button" id="sweet-alert-subscribe">SUBSCRIBE</button>
+    <%= link_to "", root_path, id: "subscribe-link", class: "hidden chat-end-link"%>
   </div>
 
 </form>
