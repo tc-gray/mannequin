@@ -1,8 +1,8 @@
 <div class="container d-flex mt-5 align-items-start">
   <% if current_user.photo.attached? %>
-    <%= cl_image_tag current_user.photo.key, height: 400, width: 400, crop: :fill, class: 'avatar-large avatar-profile m-3' %>
+  <%= cl_image_tag current_user.photo.key, height: 400, width: 400, crop: :fill, class: 'avatar-large avatar-profile m-3' %>
   <% else %>
-    <img class="avatar-large avatar-profile" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
+  <img class="avatar-large avatar-profile" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
   <% end %>
   <div class="my-account-details ml-4">
     <h1 class="mb-5 mt-3">Hi, <%= current_user.first_name.capitalize %></h1>
@@ -15,191 +15,212 @@
 </div>
 
 <div class="container mt-3">
-  <ul class="nav nav-tabs">
-    <li class="nav-link "><a data-toggle="tab" href="#home">Pending Bookings</a></li>
-    <li class="nav-link"><a data-toggle="tab" href="#menu1">Booking Requests</a></li>
-    <li class="nav-link active"><a data-toggle="tab" href="#menu2">Wardrobe</a></li>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Wardrobe</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pending Bookings</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="requested-tab" data-toggle="tab" href="#requested" role="tab" aria-controls="requested" aria-selected="false">Requested Bookings</a>
+    </li>
   </ul>
-
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade-in">
-      <% @pending_user_bookings = current_user.bookings.select do |booking| %>
-        <% booking.status == "Pending" %>
-      <% end %>
-
-      <div class="container mt-3">
-        <% if @pending_user_bookings.length > 0 %>
-          <h1>Pending bookings</h1>
-        <% else %>
-          <h1>You currently have no pending bookings</h1>
-        <% end %>
-        <div class="row">
-          <% current_user.bookings.each do |booking| %>
-            <% booking.product %>
-            <div class="col-sm-6 col-md-3">
-              <%= link_to product_path(booking.product) do %>
-                <div class="card-product rounded mt-3">
-                    <%# add cloudinary 1st image %>
-                  <div class="img-wrapper">
-                    <%= cl_image_tag booking.product.photos[0].key, height: 300, width: 200, crop: :fill %>
-                      <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-                  </div>
-                  <div class="card-product-infos">
-                    <div>
-                      <h2 class=""><%= booking.product.name.upcase %></h2>
-                      <p><%= booking.product.category.upcase %></p>
-                      <p>BOOKING STATUS:<%= booking.status %></p>
-                      <h2 class="card-product-pricing"><%= humanized_money_with_symbol(booking.product.price) %></h2>
-                    </div>
-                    <i class="far fa-heart card-product-save"></i>
-                  </div>
-                </div>
-              <% end %>
-              <% if booking.status == "Pending" %>
-                <% if current_user == booking.product.user %>
-                  <div class="accept-decline-buttons">
-                    <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
-                      <%= f.hidden_field :status, value: "Accepted" %>
-                      <%= f.submit "Accept", class: "btn btn-success" %>
-                    <% end %>
-                    <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
-                      <%= f.hidden_field :status, value: "Declined" %>
-                      <%= f.submit "Decline", class: "btn btn-danger" %>
-                    <% end %>
-                  </div>
-                <% end %>
-              <% elsif booking.orders.find_by(user: booking.user).state == "Paid" %>
-              <div class="d-flex justify-content-around align-items-center">
-                <p>paid</p>
-                <%= link_to booking_path(booking), method: :delete, remote: true do%>
-                  <i class="fas fa-times"></i>
-                <% end %>
-              </div>
-              <% elsif booking.status == "Declined" %>
-              <div class="d-flex justify-content-around align-items-center">
-                <p>Declined</p>
-                <%= link_to booking_path(booking), method: :delete, remote: true do%>
-                  <i class="fas fa-times"></i>
-                <% end %>
-              </div>
-              <% else %>
-                <button id="pay-<%= booking.id%>" class="btn btn-primary pay-button">PAY NOW</button>
-                <script src="https://js.stripe.com/v3/"></script>
-                <script>
-                    document.getElementById('pay-<%= booking.id%>').addEventListener('click', () => {
-                    const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
-                    stripe.redirectToCheckout({
-                      sessionId: '<%= booking.orders.find_by(user: booking.user).checkout_session_id %>'
-                    });
-                  });
-                </script>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div id="menu1" class="tab-pane fade-in">
-
-      <div class="container mt-3">
-        <% if current_user.requested_bookings.length > 0 %>
-          <h1>Booking Requests</h1>
-        <% else %>
-          <h1>You currently have no booking requests</h1>
-        <% end %>
-        <div class="row">
-          <% current_user.requested_bookings.each do |booking| %>
-            <% booking.product %>
-              <div class="col-sm-6 col-md-3">
-                <%= link_to product_path(booking.product) do %>
-                  <div class="card-product rounded mt-3">
-                    <div class="img-wrapper">
-                      <%= cl_image_tag booking.product.photos[0].key, height: 300, width: 200, crop: :fill %>
-                      <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-                    </div>
-                    <div class="card-product-infos">
-                      <div>
-                        <h2 class=""><%= booking.product.name.upcase %></h2>
-                        <p><%= booking.product.category.upcase %></p>
-                        <p>BOOKING STATUS:<%= booking.status %></p>
-                      </div>
-                      <h2 class="card-product-pricing"><%= humanized_money_with_symbol(booking.product.price) %></h2>
-                      <i class="far fa-heart card-product-save"></i>
-                    </div>
-                  </div>
-                <% end %>
-
-
-                <div class="d-flex justify-content-around align-items-center">
-                  <% if booking.status == "Pending" %>
-                    <% if current_user == booking.product.user %>
-                      <div class="accept-decline-buttons">
-                        <%= form_with(model: booking, url: booking_path(booking), remote: true, method: :patch) do |f| %>
-                          <%= f.hidden_field :status, value: "Accepted" %>
-                          <%= f.submit "Accept", class: "btn btn-success accept-btn" %>
-                        <% end %>
-                        <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch") do |f| %>
-                          <%= f.hidden_field :status, value: "Declined" %>
-                          <%= f.submit "Decline", class: "btn btn-danger decline-btn" %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  <% end %>
-                  <% if booking.orders.length > 0 %>
-                    <% if booking.orders.find_by(user: booking.user).state == "Paid"  || booking.status == "Declined"%>
-                      <p><%= booking.status == "Declined" ? "Declined" : "Paid"%></p>
-                      <%= link_to booking_path(booking), method: :delete, remote: true do%>
-                        <i class="fas fa-times"></i>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div id="menu2" class="tab-pane fade-in active">
-
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div class="container mt-3">
         <div class="my-account-products">
           <h1>My Wardrobe</h1>
-          <% if current_user.products.count > 0 %>
-            <%= link_to 'Add a new product', new_product_path, class: "btn btn-flat" %>
+          <% if current_user.products.count> 0 %>
+          <%= link_to 'Add a new product' , new_product_path, class: "btn btn-flat" %>
           <% end %>
         </div>
-        <% if current_user.products.length > 0 %>
-          <div class="row">
-            <% current_user.products.each do |product| %>
-              <div class="col-sm-6 col-md-3">
-                <%= link_to product_path(product) do %>
-                  <div class="card-product rounded mt-3">
-                    <div class="img-wrapper">
-                      <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
-                      <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
-                    </div>
-                    <div class="card-product-infos">
-                      <div>
-                        <h2 class=""><%= product.name.upcase %></h2>
-                        <p><%= product.category.upcase %></p>
-                      </div>
-                      <h2 class="card-product-pricing"><%= humanized_money_with_symbol(product.price) %></h2>
-                      <i class="far fa-heart card-product-save"></i>
-                    </div>
-                  </div>
+        <div class="row">
+          <% if current_user.products.length> 0 %>
+          <% current_user.products.each do |product| %>
+          <div class="col-sm-6 col-md-3">
+            <%= link_to product_path(product) do %>
+            <div class="card-product rounded mt-3">
+              <div class="img-wrapper">
+                <%= cl_image_tag product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+              </div>
+              <div class="card-product-infos">
+                <div>
+                  <h2 class=""><%= product.name.upcase %></h2>
+                  <p><%= product.category.upcase %></p>
+                </div>
+                <h2 class="card-product-pricing"><%= humanized_money_with_symbol(product.price) %></h2>
+                <i class="far fa-heart card-product-save"></i>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <% end %>
+          <% else %>
+          <div class="container my-account-products-container">
+            <h4 class="m-5 text-center">You don't have any items to rent. Anything you want to rent out?</h4>
+            <%= link_to 'Get Started' , new_product_path, class: "btn btn-flat" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <% @pending_user_bookings=current_user.bookings.select do |booking| %>
+      <% booking.status=="Pending" %>
+      <% end %>
+
+      <div class="container mt-3">
+        <% if @pending_user_bookings.length> 0 %>
+        <h1>Pending bookings</h1>
+        <% else %>
+        <h1>You currently have no pending bookings</h1>
+        <% end %>
+        <div class="row">
+          <% current_user.bookings.each do |booking| %>
+          <% booking.product %>
+          <div class="col-sm-6 col-md-3">
+            <%= link_to product_path(booking.product) do %>
+            <div class="card-product rounded mt-3">
+              <%# add cloudinary 1st image %>
+              <div class="img-wrapper">
+                <%= cl_image_tag booking.product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+              </div>
+              <div class="card-product-infos">
+                <div>
+                  <h2 class="">
+                    <%= booking.product.name.upcase %>
+                  </h2>
+                  <p>
+                    <%= booking.product.category.upcase %>
+                  </p>
+                  <p>BOOKING STATUS:<%= booking.status %>
+                  </p>
+                  <h2 class="card-product-pricing">
+                    <%= humanized_money_with_symbol(booking.product.price) %>
+                  </h2>
+                </div>
+                <i class="far fa-heart card-product-save"></i>
+              </div>
+            </div>
+            <% end %>
+            <% if booking.status=="Pending" %>
+            <% if current_user==booking.product.user %>
+            <div class="accept-decline-buttons">
+              <%= form_with(model: booking, url: booking_path(booking), remote: true, method: "patch"
+              ) do |f| %>
+              <%= f.hidden_field :status, value: "Accepted" %>
+              <%= f.submit "Accept" , class: "btn btn-success" %>
+              <% end %>
+              <%= form_with(model: booking, url: booking_path(booking), remote: true,
+              method: "patch" ) do |f| %>
+              <%= f.hidden_field :status, value: "Declined" %>
+              <%= f.submit "Decline" , class: "btn btn-danger" %>
+              <% end %>
+            </div>
+            <% end %>
+            <% elsif booking.orders.find_by(user: booking.user).state=="Paid" %>
+            <div class="d-flex justify-content-around align-items-center">
+              <p>paid</p>
+              <%= link_to booking_path(booking), method: :delete, remote: true do%>
+              <i class="fas fa-times"></i>
+              <% end %>
+            </div>
+            <% elsif booking.status=="Declined" %>
+            <div class="d-flex justify-content-around align-items-center">
+              <p>Declined</p>
+              <%= link_to booking_path(booking), method: :delete, remote: true do%>
+              <i class="fas fa-times"></i>
+              <% end %>
+            </div>
+            <% else %>
+            <button id="pay-<%= booking.id%>" class="btn btn-primary pay-button">PAYNOW</button>
+            <script src="https://js.stripe.com/v3/"></script>
+            <script>
+              document.getElementById('pay-<%= booking.id%>').addEventListener('click', () => {
+                const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+                stripe.redirectToCheckout({
+                  sessionId: '<%= booking.orders.find_by(user: booking.user).checkout_session_id %>'
+                });
+              });
+            </script>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="requested" role="tabpanel" aria-labelledby="requested-tab">
+      <div class="container mt-3">
+        <% if current_user.requested_bookings.length> 0 %>
+        <h1>Booking Requests</h1>
+        <% else %>
+        <h1>You currently have no booking requests</h1>
+        <% end %>
+        <div class="row">
+          <% current_user.requested_bookings.each do |booking| %>
+          <% booking.product %>
+          <div class="col-sm-6 col-md-3">
+            <%= link_to product_path(booking.product) do %>
+            <div class="card-product rounded mt-3">
+              <div class="img-wrapper">
+                <%= cl_image_tag booking.product.photos[0].key, height: 300, width: 200, crop: :fill %>
+                <%# <img src="https://source.unsplash.com/VlMMBxSZuSI/200x300" /> %>
+              </div>
+              <div class="card-product-infos">
+                <div>
+                  <h2 class="">
+                    <%= booking.product.name.upcase %>
+                  </h2>
+                  <p>
+                    <%= booking.product.category.upcase %>
+                  </p>
+                  <p>BOOKING STATUS:<%= booking.status %>
+                  </p>
+                </div>
+                <h2 class="card-product-pricing">
+                  <%= humanized_money_with_symbol(booking.product.price) %>
+                </h2>
+                <i class="far fa-heart card-product-save"></i>
+              </div>
+            </div>
+            <% end %>
+            <div class="d-flex justify-content-around align-items-center">
+              <% if booking.status=="Pending" %>
+              <% if current_user==booking.product.user %>
+              <div class="accept-decline-buttons">
+                <%= form_with(model: booking, url: booking_path(booking), remote: true, method: :patch) do
+                |f| %>
+                <%= f.hidden_field :status, value: "Accepted" %>
+                <%= f.submit "Accept" , class: "btn btn-success accept-btn" %>
+                <% end %>
+                <%= form_with(model: booking, url: booking_path(booking), remote: true,
+                method: "patch" ) do |f| %>
+                <%= f.hidden_field :status, value: "Declined" %>
+                <%= f.submit "Decline" , class: "btn btn-primary decline-btn" %>
                 <% end %>
               </div>
-            <% end %>
-        <% else %>
-            <div class="container my-account-products-container">
-              <h4 class="m-5 text-center">You don't have any items to rent. Anything you want to rent out?</h4>
-              <%= link_to 'Get Started', new_product_path, class: "btn btn-flat" %>
+              <% end %>
+              <% end %>
+              <% if booking.orders.length> 0 %>
+              <% if booking.orders.find_by(user: booking.user).state=="Paid" ||
+              booking.status=="Declined" %>
+              <p>
+                <%= booking.status=="Declined" ? "Declined" : "Paid" %>
+              </p>
+              <%= link_to booking_path(booking), method: :delete, remote: true do%>
+              <i class="fas fa-times"></i>
+              <% end %>
+              <% end %>
+              <% end %>
             </div>
           </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
+  <hr>
 </div>
-
-<hr>
