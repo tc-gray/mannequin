@@ -23,21 +23,22 @@ Product.destroy_all
 puts "Database cleaned"
 
 def attach_photo(user)
-  url = "https://source.unsplash.com/random?sig=#{rand(1..60)}/&portrait/300x300"
+  # url = "https://source.unsplash.com/random?sig=#{rand(1..60)}/&flower/300x300"
+  url = "https://source.unsplash.com/300x300/?female,avatar"
   file = URI.open(url)
   user.photo.attach(io: file, filename: "#{user.first_name.gsub(" ", "-")}.jpeg", content_type: 'image/jpeg')
 end
 
-user_1 = User.create(username:'Johnnyfash', email: 'john@gmail.com', first_name: 'John', last_name: 'Smith', password: '123456')
+user_1 = User.create(username:'emsmith', email: 'emma@gmail.com', first_name: 'Emma', last_name: 'Smith', password: '123456')
 attach_photo(user_1)
 
-user_2 = User.create(username:'Sallyfash', email: 'sally@gmail.com', first_name: 'Sally', last_name: 'Moon', password: '123456')
+user_2 = User.create(username:'sallyfashion', email: 'sally@gmail.com', first_name: 'Sally', last_name: 'Moon', password: '123456')
 attach_photo(user_2)
 
-user_3 = User.create(username:'Jessicafash', email: 'jessica@gmail.com', first_name: 'Jessica', last_name: 'Rabbit', password: '123456')
+user_3 = User.create(username:'jesses-dresses', email: 'jessica@gmail.com', first_name: 'Jessica', last_name: 'Rabbit', password: '123456')
 attach_photo(user_3)
 
-user_4 = User.create(username:'Sonnyfash', email: 'sonny@gmail.com', first_name: 'Sonny', last_name: 'Jim', password: '123456')
+user_4 = User.create(username:'skinnyginny123', email: 'ginny@gmail.com', first_name: 'Ginny', last_name: 'Mac', password: '123456')
 attach_photo(user_4)
 
 puts "Users created"
@@ -140,7 +141,7 @@ color_array = ['red', 'pink', 'white', 'blue', 'green', 'black', 'multicolor']
 sizes_array = ['6', '8', '10', '12', '14', '16', '18',]
 
 
-15.times do
+25.times do
   search_term = search_term_array.sample
   color = color_array.sample
 
@@ -148,7 +149,7 @@ sizes_array = ['6', '8', '10', '12', '14', '16', '18',]
   html_file = URI.open(url).read
   html_doc = Nokogiri::HTML(html_file)
 
-  html_doc.search('.styles__ProductCard-sc-__sc-13q41bc-2').first(5).each do |element|
+  html_doc.search('.styles__ProductCard-sc-__sc-13q41bc-2').first(10).each do |element|
 
     product_url = "https://www.depop.com#{element.attribute('href').value}"
     file = URI.open(product_url).read
