@@ -4,22 +4,23 @@
   padding: 150px 0;
   height: 90vh;
   position: relative;
+  text-align: right;
 }
 
 .banner-text {
   position: relative;
   bottom: -300px;
-  left: -60px;
+  right: 20px;
 }
 
 .banner h2 {
   margin: 0;
   color: white;
-  font-size: 40px;
+  font-size: 33px;
 }
 
 .banner p {
-  font-size: 32px;
+  font-size: 30px;
   color: white;
   font-family: "Raleway";
 }
