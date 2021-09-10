@@ -6,7 +6,7 @@
       <%= f.input :start_date, as: :date, html5: true %>
       <%= f.input :end_date, as: :date, html5: true %>
   </div>
-  <div class="form-actions btn btn-secondary text-white button">
-    <%= f.button :submit %>
+  <div class="form-actions">
+    <%= f.submit 'REQUEST BOOKING', class: 'btn btn-primary btn-book' %>
   </div>
 <% end %>

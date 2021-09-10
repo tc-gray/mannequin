@@ -5,7 +5,7 @@
     <img class="avatar-large avatar-profile" src="https://source.unsplash.com/1DjbGRDh7-E/1600x900" />
   <% end %>
   <div class="my-account-details ml-4">
-    <h1 class="mb-5">Hi, <%= current_user.first_name.capitalize %></h1>
+    <h1 class="mb-5 mt-3">Hi, <%= current_user.first_name.capitalize %></h1>
     <hr>
     <br>
     <p><i class="fas fa-user"></i> <%= current_user.username %></p>
@@ -192,8 +192,8 @@
             <% end %>
         <% else %>
             <div class="container my-account-products-container">
-              <h4 class="m-5 text-center">You have no products for rental. Anything you want to rent out?</h4>
-              <%= link_to 'Add a new product', new_product_path, class: "btn btn-flat" %>
+              <h4 class="m-5 text-center">You don't have any items to rent. Anything you want to rent out?</h4>
+              <%= link_to 'Get Started', new_product_path, class: "btn btn-flat" %>
             </div>
           </div>
         <% end %>
