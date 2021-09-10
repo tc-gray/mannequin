@@ -2,15 +2,8 @@
   border: 1px solid lighten($primary, 40%);
   background: lighten($primary, 45%);
   background-color: #f0e8e5;
-  border-right: 5px solid #D8AC9C;
   margin: 4px 0;
-  border-bottom: 1px solid black;
-  border-top: none;
-  border-left: none;
-
-  &+.room-nav-link {
-    border-top: 0 none;
-  }
+  border: 1px solid black;
 }
 
 /* Sweep To Right */
@@ -138,7 +131,7 @@
   left: 0;
   right: 100%;
   bottom: 0;
-  background: #2098D1;
+  background: black;
   height: 4px;
   -webkit-transition-property: right;
   transition-property: right;
@@ -146,6 +139,7 @@
   transition-duration: 0.3s;
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+  color: black;
 }
 
 .hvr-underline-from-left:hover:before,
