@@ -13,15 +13,21 @@
 }
 
 .currency {
-    border: 1px solid #241E19;
-    border-radius: 3px;
-    color: #241E19;
-    font-size: 12px;
-    letter-spacing: 1.2px;
-    line-height: 12px;
-    font-weight: bold;
-    padding: 3px 10px;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
+  border: 1px solid #241E19;
+  border-radius: 3px;
+  color: #241E19;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  line-height: 12px;
+  font-weight: bold;
+  padding: 3px 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+@media only screen and (max-width: 600px) {
+  .currency, .user-corner {
+    display: none;
+  }
 }
