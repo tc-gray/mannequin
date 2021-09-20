@@ -24,3 +24,12 @@
   color: white;
   font-family: "Raleway";
 }
+
+
+@media only screen and (max-width: 600px) {
+  .banner-text {
+    right: 100px;
+    bottom: -50px;
+    text-align: center;
+  }
+}
