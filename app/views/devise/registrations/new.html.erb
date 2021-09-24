@@ -34,11 +34,14 @@
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Sign up", class: 'btn btn-primary my-3'%>
+            <%= f.button :submit, "Sign up", class: 'btn btn-primary btn-book my-3'%>
           </div>
         <% end %>
 
-        <%= render "devise/shared/links" %>
+        <div class="text-center">
+          <p class="d-inline-block">Already registered? </p>
+          <%= render "devise/shared/links" %>
+        </div>
     </div>
   </div>
 </div>
