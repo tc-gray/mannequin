@@ -6,7 +6,7 @@ Mannequinn is a user to user fashion rental service with sustainability at its h
 
 Our community of like-minded, entrepreneurial members are sharing more than just their wardrobes. They’re doing good by looking good.
 
-Please find out page hosted at: [www.mannequinn.co.uk] (http://www.mannequinn.co.uk/).
+Please find out page hosted at: [www.mannequinn.co.uk](http://www.mannequinn.co.uk/)
 
 ![Mannequinn Homepage.](/app/assets/images/mannequinn-homepage.jpeg)
 ![Mannequinn Community Page.](/app/assets/images/mannequinn-community.jpeg)
