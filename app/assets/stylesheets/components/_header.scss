@@ -26,8 +26,8 @@
   width: fit-content;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 991px) {
   .currency, .user-corner {
-    display: none;
+    display: none !important;
   }
 }
